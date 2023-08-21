@@ -1,0 +1,19 @@
+.parkList {
+    list-style-type: none;
+    margin-left: 25px;
+}
+.parkList li{
+    width: 150px;
+    height: 50px;
+
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.usedLot {
+    background-color: red;
+}
+.freeLot {
+    background-color: green;
+}
