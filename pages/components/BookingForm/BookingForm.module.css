@@ -21,3 +21,15 @@
     justify-content: space-evenly;
     margin-bottom: 20px;
 }
+.dateBox {
+    background-color: gray;
+    height: 20px;
+    width: fit-content;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.showTimeAndDate{
+    display: flex;
+}

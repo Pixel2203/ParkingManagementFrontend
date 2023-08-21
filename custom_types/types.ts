@@ -27,11 +27,11 @@ export type parkData = {
 
 }
 export type customDateObject = {
-    day: number,
-    month: number,
-    year: number,
-    minute: number,
-    hour: number
+    day: string,
+    month: string,
+    year: string,
+    minute: string,
+    hour: string
 }
 export interface parkingOverview {
     parking_lots: Array<parkData>
