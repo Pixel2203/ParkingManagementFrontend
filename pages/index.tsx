@@ -2,15 +2,29 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import LoginForm from "@/pages/components/LoginForm/LoginForm";
-import {useState} from "react";
-import {userData} from "@/custom_types/types";
+import {ReactElement, useState} from "react";
+import {SnackbarComponent, userData} from "@/utils/types";
 import ParkingLotList from "@/pages/components/ParkingLotList/ParkingLotList";
+import {Snackbar} from "@mui/material";
+import AppHeader from "@/pages/components/AppHeader/AppHeader";
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
     const [userData,setUserData] = useState<userData | null>(null)
-
+    const [open,setOpen] = useState<boolean>(false);
+    const [snackbarContent, setSnackbarContent] = useState<ReactElement>(<></>);
+    const showSnackbar = (content: ReactElement) => {
+        setSnackbarContent(content)
+        setOpen(true);
+    }
+    const hideSnackbar = () => {
+        setOpen(false);
+    }
+    const snackbarComponent: SnackbarComponent = {
+        displaySnackbar: showSnackbar
+    };
     return (
         <>
           <Head>
@@ -20,14 +34,20 @@ export default function Home() {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <main>
+              <AppHeader/>
               {
                   userData == null ?
-                  <LoginForm setUserData={setUserData}/>
-                      :
-                      <ParkingLotList/>
+                  <LoginForm setUserData={setUserData} snackbarComponent={snackbarComponent}/>
+                      : <ParkingLotList uData={userData} snackbar={snackbarComponent}/>
               }
-
+              <Snackbar open={open} onClose={hideSnackbar} autoHideDuration={3000}  >
+                  {snackbarContent}
+              </Snackbar>
           </main>
         </>
       )
 }
+//TODO Vorschläge für Reservierung
+//TODO Buchungshistorie
+//TODO Status LED beim Buchen (Ist das ausgewählte Timestamp frei?)
+

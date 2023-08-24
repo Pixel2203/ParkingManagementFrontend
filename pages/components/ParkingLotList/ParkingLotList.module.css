@@ -1,19 +1,36 @@
-.parkList {
+.cardList {
     list-style-type: none;
-    margin-left: 25px;
+    margin-left: 20%;
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
-.parkList li{
-    width: 150px;
-    height: 50px;
-
-    margin: 10px 0;
+.cardList li{
+    width: 200px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 20px;
 }
 .usedLot {
     background-color: red;
 }
 .freeLot {
     background-color: green;
+}
+.availabilityIndicator{
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+}
+.availabilityContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.sensorCard {
+    width:100%;
+    height: 100%;
 }

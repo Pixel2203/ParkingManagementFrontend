@@ -5,28 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfb44da4-ab49-48af-8579-519928cb962d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ParkingManagementFrontend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/custom_types/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/BookingForm/BookingAccordion/BookingAccordion.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/BookingForm/BookingAccordion/BookingAccordion.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/BookingForm/BookingHandler.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/BookingForm/BookingList/BookingList.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/BookingForm/BookingList/BookingList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/BookingForm/TimeInput/TimeInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/RequestHandler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/TimeDateHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/hello.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/requestParkData.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/sensor.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/BookingForm.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/BookingForm/BookingForm.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/BookingForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/BookingForm/BookingForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="CSS File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2UIn1S2bzsRiT42gorjih3wLXrG" />
   <component name="ProjectLevelVcsManager">
@@ -39,18 +68,30 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/pages/components/BookingForm",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "F:\\ParkingManagementFrontend\\node_modules\\typescript\\lib",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
+    "ts.external.directory.path": "/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/components/BookingForm" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/components/BookingForm" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -72,6 +113,9 @@
       <option name="presentableId" value="Default" />
       <updated>1692635746848</updated>
       <workItem from="1692635748948" duration="4453000" />
+      <workItem from="1692689738353" duration="5636000" />
+      <workItem from="1692721746917" duration="22794000" />
+      <workItem from="1692786166297" duration="28040000" />
     </task>
     <servers />
   </component>

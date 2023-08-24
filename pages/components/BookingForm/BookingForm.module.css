@@ -1,35 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Cinzel&family=Maven+Pro:wght@900&display=swap');
+
 .wrapper {
-    position: absolute;
+    position: fixed;
     top:0;
     height: 100%;
     width: 100%;
-    background-color:rgba(0,0,0,0.7);
+    background-color:rgba(0,0,0,0);
     display:flex;
     align-items: center;
     justify-content: center;
+    animation-iteration-count: 1;
+    animation: animate-bw forwards .5s;
+}
+@keyframes animate-bw {
+    0% {
+        background-color:rgba(0,0,0,0);
+    }
+    100% {
+        background-color:rgba(0,0,0,.7);
+    }
+}
+@keyframes animate-bwf {
+    0% {
+        transform:scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 .innerWrapper {
     background-color: white;
     width: 500px;
-    height: 500px;
+    height: fit-content;
+    animation-iteration-count: 1;
+    animation: animate-bwf forwards 1s;
+    border-bottom-left-radius: 25px;
+
+}
+.contentWrapper {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    border-left-color: #FF007F;
+    font-family: Verdana;
+}
+.contentWrapper h3{
+    font-size: 14pt;
+}
+.contentWrapper h4 {
+    font-size: 12pt;
+    margin: 5px 0;
 }
 .buttonWrapper {
     display:flex;
     justify-content: space-evenly;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 .dateBox {
-    background-color: gray;
-    height: 20px;
+    background-color: rgba(31,31,31,0.21);
+    height: 40px;
     width: fit-content;
-    border: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    padding: 7px;
+    border-radius: 20px;
 }
+.datePicker {
+    border: 2px solid gray;
+    border-radius: 9px;
+    outline: none;
+    width: 250px;
+    height: 30px;
+    background-color: white;
+}
+.datePicker::-webkit-calendar-picker-indicator {
+    color: red;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
 .showTimeAndDate{
     display: flex;
+    align-items: center;
+}
+
+.header {
+    background-color: #72A1E5;
+    color:white;
+    height: 65px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Maven Pro";
+    font-size: 15pt;
+    letter-spacing: 5px;
+}
+.bookingContent {
+    margin-left: 15px;
+    margin-top: 10px;
+}
+.accordion {
+    margin-top: 5px;
+    height: fit-content;
 }

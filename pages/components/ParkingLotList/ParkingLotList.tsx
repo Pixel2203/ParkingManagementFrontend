@@ -1,18 +1,23 @@
 import {ReactElement, useEffect, useRef, useState} from "react";
-import {parkData, parkingOverview, parkingRequestResponse} from "@/custom_types/types";
+import {FullSensorDataResponse, sensorData, parkingOverview, userData, SnackbarComponent} from "@/utils/types";
 import styles from "./ParkingLotList.module.css"
 import BookingForm from "@/pages/components/BookingForm/BookingForm";
-export default function ():ReactElement {
+import {getAllSensorData} from "@/pages/components/RequestHandler";
+import {Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
+export default function ({uData,snackbar}: {uData:userData,snackbar:SnackbarComponent}):ReactElement {
     const [parkingData, setParkingData] = useState<parkingOverview>();
     const [showBookingWindow, setShowBookingWindow] = useState(false);
     useEffect(() => {
-        console.log("lets go")
-        fetch("/api/requestParkData").then(res => res.json()).then((result:parkingOverview) => {
-            console.log("gesetzt!")
-            setParkingData(result);
+        getAllSensorData().then((result: FullSensorDataResponse) => {
+            if(result.worked && result.sensors){
+                const overview: parkingOverview = {
+                    parking_lots: result.sensors
+                }
+                setParkingData(overview);
+            }
         })
     }, [])
-    let selectedParkingLot = useRef<parkData>();
+    let selectedParkingLot = useRef<sensorData>();
     const clickParkingLot = (parkId:number) => {
         if(parkingData){
             parkingData?.parking_lots.map(parkingLot => {
@@ -31,16 +36,32 @@ export default function ():ReactElement {
             {
                 parkingData &&
                     <>
-                        <ul className={styles.parkList}>
+                        <ul className={styles.cardList}>
                             {
                                 parkingData.parking_lots.map(parkingLot => (
-                                    <li onClick={() => clickParkingLot(parkingLot.id)} className={parkingLot.used ? styles.usedLot : styles.freeLot} key={parkingLot.id}>{parkingLot.name}</li>
+                                    <li>
+                                        <Card className={styles.sensorCard}>
+                                            <CardHeader title={parkingLot.name}/>
+                                            <CardContent>
+                                                <div className={styles.availabilityContainer}>
+                                                    <p>Status</p>
+                                                    <div className={styles.availabilityIndicator} style={{backgroundColor: parkingLot.bookable? parkingLot.status? "yellow" : "green" :"red"}}></div>
+                                                </div>
+                                                <p>Typ E-Ladesäule</p>
+                                            </CardContent>
+
+                                            <CardActions>
+                                                <Button size="small" onClick={() => clickParkingLot(parkingLot.id)}>Details</Button>
+                                            </CardActions>
+                                        </Card>
+                                    </li>
                                 ))
+
                             }
                         </ul>
                         {
                             showBookingWindow && selectedParkingLot.current &&
-                            <BookingForm parkingLotData={selectedParkingLot.current} setShowBookingWindow={setShowBookingWindow}/>
+                            <BookingForm snackbar={snackbar} parkingLotData={selectedParkingLot.current} setShowBookingWindow={setShowBookingWindow} userData={uData}/>
                         }
 
 

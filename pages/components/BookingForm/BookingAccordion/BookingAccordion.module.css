@@ -1,0 +1,16 @@
+.accordionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.contentWrapper {
+    opacity: 0;
+    margin-right: 15px;
+}
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}

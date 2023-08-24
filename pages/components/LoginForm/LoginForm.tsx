@@ -1,9 +1,9 @@
 import {ReactElement, useRef, useState} from "react";
 import styles from "@/styles/booking.module.css"
 import {Alert, Snackbar} from "@mui/material";
-import {userData, parkingRequestResponse, SnackbarComponent} from "@/custom_types/types";
+import {userData, SnackbarComponent} from "@/utils/types";
 import * as EmailValidator from 'email-validator'
-export default function ({setUserData}: {setUserData:(data: userData) => void}):ReactElement {
+export default function ({setUserData,snackbarComponent}: {setUserData:(data: userData) => void, snackbarComponent:SnackbarComponent}):ReactElement {
 
     const plateInputRef = useRef<HTMLInputElement>(null)
     const brandInputRef = useRef<HTMLInputElement>(null)
@@ -14,18 +14,7 @@ export default function ({setUserData}: {setUserData:(data: userData) => void}):
     const emailInputRef = useRef<HTMLInputElement>(null)
     const companySelectRef = useRef<HTMLSelectElement>(null)
 
-    const [open,setOpen] = useState<boolean>(false);
-    const [snackbarContent, setSnackbarContent] = useState<ReactElement>(<></>);
-    const showSnackbar = (content: ReactElement) => {
-        setSnackbarContent(content)
-        setOpen(true);
-    }
-    const hideSnackbar = () => {
-        setOpen(false);
-    }
-    const snackbarComponent: SnackbarComponent = {
-        displaySnackbar: showSnackbar
-    };
+
     const checkIsNum = (number:string | undefined): boolean => {
         if(!number){
             return false;
@@ -53,11 +42,11 @@ export default function ({setUserData}: {setUserData:(data: userData) => void}):
                 model: modelInputRef.current.value
             }
             setUserData(userData);
-            showSnackbar(<Alert severity={"success"}>
+            snackbarComponent.displaySnackbar(<Alert severity={"success"}>
                 Successfully logged in!
             </Alert>)
         }else {
-            showSnackbar(<Alert severity={"error"}>
+            snackbarComponent.displaySnackbar(<Alert severity={"error"}>
                 Login data was invalid!
             </Alert> )
         }
@@ -168,9 +157,7 @@ export default function ({setUserData}: {setUserData:(data: userData) => void}):
                 </ul>
                 <button onClick={submitRequest}>Absenden</button>
             </div>
-            <Snackbar open={open} onClose={hideSnackbar} autoHideDuration={3000}  >
-                {snackbarContent}
-            </Snackbar>
+
         </>
     )
 }
