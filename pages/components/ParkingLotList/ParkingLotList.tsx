@@ -1,9 +1,9 @@
 import {ReactElement, useEffect, useRef, useState} from "react";
 import {FullSensorDataResponse, sensorData, parkingOverview, userData, SnackbarComponent} from "@/utils/types";
 import styles from "./ParkingLotList.module.css"
-import BookingForm from "@/pages/components/BookingForm/BookingForm";
+import BookingForm from "@/pages/components/ParkingLotInfo/ParkingLotInfo";
 import {getAllSensorData} from "@/pages/components/RequestHandler";
-import {Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
+import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
 export default function ({uData,snackbar}: {uData:userData,snackbar:SnackbarComponent}):ReactElement {
     const [parkingData, setParkingData] = useState<parkingOverview>();
     const [showBookingWindow, setShowBookingWindow] = useState(false);
@@ -39,13 +39,21 @@ export default function ({uData,snackbar}: {uData:userData,snackbar:SnackbarComp
                         <ul className={styles.cardList}>
                             {
                                 parkingData.parking_lots.map(parkingLot => (
-                                    <li>
+                                    <li >
                                         <Card className={styles.sensorCard}>
-                                            <CardHeader title={parkingLot.name}/>
-                                            <CardContent>
+                                            <CardHeader title={
+                                                <div className={styles.cardHeaderContent}>
+                                                    <p>Parkplatz</p>
+                                                    <Avatar className={styles.cardHeaderAvatar}><span>{parkingLot.id}</span></Avatar>
+                                                </div>
+
+                                            } className={styles.cardHeader}>
+
+                                            </CardHeader>
+                                            <CardContent className={styles.cardContent}>
                                                 <div className={styles.availabilityContainer}>
                                                     <p>Status</p>
-                                                    <div className={styles.availabilityIndicator} style={{backgroundColor: parkingLot.bookable? parkingLot.status? "yellow" : "green" :"red"}}></div>
+                                                    <div className={styles.availabilityIndicator} style={{backgroundColor: parkingLot.bookable? parkingLot.status? "orange" : "green" :"red"}}></div>
                                                 </div>
                                                 <p>Typ E-Ladesäule</p>
                                             </CardContent>

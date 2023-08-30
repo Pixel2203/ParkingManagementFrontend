@@ -1,0 +1,29 @@
+.datePicker {
+    border: 2px solid gray;
+    border-radius: 9px;
+    outline: none;
+    width: 250px;
+    height: 30px;
+    background-color: white;
+}
+.datePicker::-webkit-calendar-picker-indicator {
+    color: red;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+.showTimeAndDate{
+    display: flex;
+    align-items: center;
+}
+.dateBox {
+    background-color: rgba(31,31,31,0.21);
+    height: 40px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 7px;
+    border-radius: 20px;
+}

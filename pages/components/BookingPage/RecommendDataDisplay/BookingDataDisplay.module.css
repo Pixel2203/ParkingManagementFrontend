@@ -1,0 +1,19 @@
+.dataTable {
+    text-align: center;
+}
+.contentWrapper {
+    overflow-y: scroll;
+    max-height: 500px;
+}
+.dataBar {
+    background-color: red;
+    margin: 10px 0;
+    position: relative;;
+    height: 50px;
+    overflow: hidden;
+}
+.dataBar section {
+    height: 50px;
+    background-color: green;
+    position: absolute;
+}

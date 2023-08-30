@@ -1,4 +1,4 @@
-import {ReactElement} from "react";
+import {Dispatch, ReactElement, SetStateAction} from "react";
 import {AlertColor} from "@mui/material";
 
 export interface SnackbarComponent {
@@ -10,7 +10,7 @@ export interface userData {
     name: string,
     plate: string,
     brand: string,
-    model: string | null,
+    model?: string | undefined,
     company: string,
     email: string,
     telephone: string
@@ -45,6 +45,18 @@ export interface ParkingTicket {
     endDate: Date,
     plate: string
 }
+export interface RecommendationTicket {
+    name: string,
+    bookingId: 0 | 9999,
+    startDate: number,
+    endDate: number,
+    plate: null
+}
+
+
+export type ParkingRecommendationResponse = ResponseObject & {
+    tickets:Record<number, Array<RecommendationTicket>>
+}
 export type BookingResponse = ResponseObject & {
     parkingTicket: ParkingTicket
 }
@@ -55,6 +67,7 @@ export type FullSensorDataResponse = ResponseObject & {
 
     sensors: Array<sensorData> | null
 }
+
 export interface Booking {
     id:number,
     startDate:number | Date,
@@ -67,4 +80,19 @@ export interface BookingRequest {
     userData: userData,
     sensorId: number
 
+}
+export interface BookingHandlerDTO {
+    setCurrentDateObject: Dispatch<SetStateAction<Date | undefined>>,
+    currentDateObject: Date | undefined
+    setFutureDateObject: Dispatch<SetStateAction<Date | undefined>>,
+    futureDateObject: Date |undefined
+}
+export interface BookingFilterObject {
+    dateFilter : {
+        selectedDate: Date
+    }
+    timeFilter?: {
+        startHours: number,
+        startMinutes: number
+    }
 }

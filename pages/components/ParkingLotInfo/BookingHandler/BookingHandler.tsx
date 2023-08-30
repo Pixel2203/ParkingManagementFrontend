@@ -1,13 +1,13 @@
-import {MutableRefObject, ReactElement, useRef, useState} from "react";
-import styles from "@/pages/components/BookingForm/BookingForm.module.css";
+import {MutableRefObject, ReactElement, useEffect, useRef, useState} from "react";
+import styles from "@/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.module.css";
 import {getDateAsString, getFutureDate, getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
-import TimeInput from "@/pages/components/BookingForm/TimeInput/TimeInput";
+import TimeInput from "@/pages/components/ParkingLotInfo/TimeInput/TimeInput";
+import {BookingHandlerDTO} from "@/utils/types";
 
-export default function ():ReactElement {
+export default function ({handlerDTO}: {handlerDTO:BookingHandlerDTO}):ReactElement {
+    const {setFutureDateObject,setCurrentDateObject,currentDateObject,futureDateObject} = handlerDTO;
     const [futureMin,setFutureMin] = useState(30);
     const datepickerRef:MutableRefObject<HTMLInputElement> = useRef<HTMLInputElement>() as any;
-    const [currentDateObject,setCurrentDateObject] = useState<Date>();
-    const [futureDateObject,setFutureDateObject] = useState<Date>();
     const [startTime , setStartTime] = useState<string>()
     const updateTimeAndDateInput = () => {
         const currentDate = new Date();
@@ -74,10 +74,16 @@ export default function ():ReactElement {
         updatedValue: getTimeAsString(currentDateObject),
         isToday: selectedDateIsToday
     }
+
+    useEffect(() => {
+        updateTimeAndDateInput();
+
+
+    }, [futureMin,startTime] )
     return (
         <section className={styles.inputContainer}>
             <section>
-                <h4>Tag der Buchung</h4>
+                <h4>Tag</h4>
                 <input ref={datepickerRef}
                        onChange={updateTimeAndDateInput}
                        type={"date"}
@@ -85,14 +91,14 @@ export default function ():ReactElement {
                        className={styles.datePicker}/>
             </section>
             <section>
-                <h4>Zeit der Buchung</h4>
+                <h4>Zeit</h4>
                 {
                     TimeInputComponent.updatedValue &&
                     <TimeInput timeComponent={TimeInputComponent}/>
                 }
             </section>
             <section >
-                <h4>Dauer der Buchung</h4>
+                <h4>Dauer</h4>
                 <select onChange={(event) => {setFutureMin(event.target.value as any)}}>
                     <option value={30}>30 Minuten</option>
                     <option value={60}>1 Stunde</option>

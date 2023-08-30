@@ -1,16 +1,16 @@
 import {
     BookingRequest,
-    customDateObject,
     FullSensorDataResponse,
-    sensorData,
-    ResponseObject, userData, BookingResponse, BookingListResponse
+    userData,
+    BookingResponse,
+    BookingListResponse,
+    ParkingRecommendationResponse
 } from "../../utils/types";
-import {min} from "@popperjs/core/lib/utils/math";
-import {ReactElement} from "react";
 
 
 export function getAllSensorData():Promise<FullSensorDataResponse> {
     return fetch("http://localhost:8080/sensors").then(response => response.json());
+
 }
 export function sendBookingRequest(currentDate: Date,futureDate:Date, userData:userData, sensorId:number):Promise<BookingResponse> {
     const requestData: BookingRequest = {
@@ -32,4 +32,13 @@ export function sendBookingRequest(currentDate: Date,futureDate:Date, userData:u
 
 export function getBookingsBySensorAndDate(sensorId:number, date:Date):Promise<BookingListResponse> {
     return fetch("http://localhost:8080/bookings?sensorId=" + sensorId + "&dateInMilliseconds=" + date.getTime()).then(response => response.json());
+}
+export function getFutureBookingsByPlate(plate:string):Promise<BookingListResponse> {
+    return fetch("http://localhost:8080/futurebookings?plate=" + plate).then(res => res.json());
+}
+export function getBookingHistoryByPlate(plate:string):Promise<BookingListResponse> {
+    return fetch("http://localhost:8080/bookinghistory?plate=" + plate).then(res => res.json());
+}
+export function getBookingRecommendations(startDate: Date, duration:number):Promise<ParkingRecommendationResponse> {
+    return fetch("http://localhost:8080/recommendations?startDate=" + startDate.getTime() + "&duration=" + duration).then(res => res.json());
 }

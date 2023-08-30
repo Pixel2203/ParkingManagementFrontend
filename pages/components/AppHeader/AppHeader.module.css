@@ -1,24 +1,23 @@
 .header {
     height: 150px;
     background-color: #93B1A6;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 60%;
-    margin-left: 20%;
+
+
 }
-.header nav , .topBar{
+.header nav, .topBar{
     width: 100%;
 }
 .badgeContainer {
-    float:right;
     margin-right: 35px;
+}
+.topBar {
+    height: 50px;
 }
 
 
 .header nav ul{
     list-style-type: none;
+    margin-top: 50px;
     display: flex;
     justify-content: space-evenly;
 }
@@ -27,4 +26,10 @@
     padding: 5px;
     color: snow;;
     border-radius: 7px;
+}
+.userContainer {
+    margin-top: 20px;
+    margin-right: 50px;
+    position: relative;
+    float:right;
 }

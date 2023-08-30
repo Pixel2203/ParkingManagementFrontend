@@ -7,7 +7,9 @@ import {SnackbarComponent, userData} from "@/utils/types";
 import ParkingLotList from "@/pages/components/ParkingLotList/ParkingLotList";
 import {Snackbar} from "@mui/material";
 import AppHeader from "@/pages/components/AppHeader/AppHeader";
-
+import ProfilePage from "@/pages/components/ProfilePage/ProfilePage";
+import styles from "@/styles/Home.module.css";
+import BookingPage from "@/pages/components/BookingPage/BookingPage";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,6 +17,7 @@ export default function Home() {
     const [userData,setUserData] = useState<userData | null>(null)
     const [open,setOpen] = useState<boolean>(false);
     const [snackbarContent, setSnackbarContent] = useState<ReactElement>(<></>);
+    const [contentSite,setContentSite] = useState<String>("ppl")
     const showSnackbar = (content: ReactElement) => {
         setSnackbarContent(content)
         setOpen(true);
@@ -33,12 +36,23 @@ export default function Home() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <main>
-              <AppHeader/>
+          <main className={styles.body}>
+              <AppHeader userData={userData} setContentSite={setContentSite}/>
               {
-                  userData == null ?
+                  !userData &&
                   <LoginForm setUserData={setUserData} snackbarComponent={snackbarComponent}/>
-                      : <ParkingLotList uData={userData} snackbar={snackbarComponent}/>
+              }
+              {
+                  userData && contentSite=="ppl" &&
+                  <ParkingLotList uData={userData} snackbar={snackbarComponent}/>
+              }
+              {
+                  userData && contentSite=="pfp" &&
+                  <ProfilePage userData={userData}/>
+              }
+              {
+                  userData && contentSite=="br" &&
+                  <BookingPage/>
               }
               <Snackbar open={open} onClose={hideSnackbar} autoHideDuration={3000}  >
                   {snackbarContent}

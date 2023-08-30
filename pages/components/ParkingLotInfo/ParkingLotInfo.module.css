@@ -3,6 +3,7 @@
 .wrapper {
     position: fixed;
     top:0;
+    left: 0;
     height: 100%;
     width: 100%;
     background-color:rgba(0,0,0,0);
@@ -52,42 +53,17 @@
     font-size: 12pt;
     margin: 5px 0;
 }
-.buttonWrapper {
+.footer {
     display:flex;
     justify-content: space-evenly;
-    margin: 20px 0;
+    padding: 20px 0;
 }
-.dateBox {
-    background-color: rgba(31,31,31,0.21);
-    height: 40px;
-    width: fit-content;
-    display: flex;
+.infoButton{
+    display:flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 7px;
-    border-radius: 20px;
+    width: 120px;
 }
-.datePicker {
-    border: 2px solid gray;
-    border-radius: 9px;
-    outline: none;
-    width: 250px;
-    height: 30px;
-    background-color: white;
-}
-.datePicker::-webkit-calendar-picker-indicator {
-    color: red;
-    width: 25px;
-    height: 25px;
-    margin-right: 5px;
-}
-
-.showTimeAndDate{
-    display: flex;
-    align-items: center;
-}
-
 .header {
     background-color: #72A1E5;
     color:white;
@@ -106,4 +82,27 @@
 .accordion {
     margin-top: 5px;
     height: fit-content;
+}
+.details p{
+    display: flex;
+    justify-content: space-between;
+}
+.details p span {
+    margin: 2px 100px 2px 0px;
+}
+.details p b {
+    font-weight: normal;
+}
+.statusDisplay {
+    color:white;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    width:120px;
+    text-align: center;
+    border-radius: 8px;
+}
+.headerAvatar{
+    background-color: white;
+    color: #72A1E5;
+    font-size: 20pt;
 }

@@ -1,0 +1,43 @@
+.wrapper {
+    font-family: Arial;
+    margin-top: 50px;
+    width: 100%;
+}
+.bookingContainer{
+    background-color: whitesmoke;
+    grid-area: booking;
+    width:100%;
+}
+.bookingHeader {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ececec;
+}
+.userData {
+    grid-area: uData;
+}
+.userData ul li {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.userData h2 {
+}
+.layoutWrapper {
+    display: grid;
+    grid-template-areas:
+        "uData booking";
+    grid-template-columns: 2fr 1fr;
+    gap: 0 100px;
+    margin-top: 50px;
+}
+.btngrp {
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+}
+.btngrp button {
+    width: 100%;
+}

@@ -1,0 +1,90 @@
+.wrapper {
+    background-color: #f6f6f6;
+    position: absolute;
+    width:350px;
+    z-index: 1;
+    font-family: "Arial";
+    box-shadow: 5px 9px 15px 5px rgba(0,0,0,0.71);
+    animation: open-window .5s ;
+    left: -300px;
+}
+@keyframes open-window {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.wrapper main {
+    margin: 10px;
+
+}
+.userData {
+    margin-bottom: 30px;
+}
+.userData ul {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+.userData ul li {
+    display: flex;
+    margin: 10px 0;
+    justify-content: space-between;
+    font-size: 11pt;
+}
+.userData ul li p {
+    font-weight: bold;
+}
+.userData ul li span{
+    width: 180px;
+}
+.userAction {
+    border-top: 2px dashed black;
+
+}
+.userAction ul {
+    margin-top: 30px;
+    list-style-type: none;
+}
+.userAction ul li{
+    margin: 10px 0;
+}
+.userAction ul li a {
+    text-decoration: underline;
+}
+
+.userData h3 {
+    font-size: 14pt;
+    margin-top: 25px;
+}
+.vehicleData {
+
+}
+.header {
+    overflow: hidden;
+}
+.header svg {
+    height: 100px;
+
+}
+.header h2 {
+    font-size: 20pt;
+    position: absolute;
+    color: white;
+    top: 20px;
+    left: 20px;
+}
+.button{
+    width: 100%;
+    display: flex;
+    justify-content: center;;
+    align-items: center;
+}
+.button > div {
+    display:flex;
+    align-items: center;
+    width: 130px;
+    justify-content: space-around;
+}
+

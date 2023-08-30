@@ -1,7 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Cinzel&family=Maven+Pro:wght@900&family=Montserrat:wght@300&display=swap');
 .cardList {
     list-style-type: none;
-    margin-left: 20%;
-    width: 60%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -33,4 +32,25 @@
 .sensorCard {
     width:100%;
     height: 100%;
+}
+.cardHeader {
+    background-color: #72A1E5;
+    color: white;
+}
+.cardContent {
+    font-family: "Montserrat";
+    padding: 0px 16px;
+}
+.cardContent > * {
+    margin: 15px 0;
+}
+.cardHeaderContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cardHeaderAvatar{
+    background-color: white;
+    color: #72A1E5;
+    font-size: 20pt;
 }

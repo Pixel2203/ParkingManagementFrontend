@@ -1,0 +1,9 @@
+.recordList {
+    list-style-type: none;
+}
+.recordList ul {
+    list-style-type: none;
+}
+.recordList ul * {
+    position: absolute;
+}

@@ -1,0 +1,38 @@
+.bookingList {
+
+
+    margin: 0 10px;
+}
+.bookingList::-webkit-scrollbar {
+    display: none;
+}
+.bookingList {
+    max-height: 250px;
+}
+.bookingList li p {
+    font-size: 12pt;
+}
+.bookingList  li span {
+    font-size: 10pt;
+}
+.bookingListEntry {
+    height: 50px;
+    background-color: #93B1A6;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0;
+    transition: transform .3s;
+    cursor: pointer;
+}
+.bookingListEntry:hover {
+    transform: scale(1.1);
+}
+.bookingListEntry svg {
+    width: 30px;
+    height: 30px;
+}
+.bookingListEntry svg, .bookingListEntry > div {
+    margin: 10px;
+}

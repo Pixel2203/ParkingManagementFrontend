@@ -1,8 +1,9 @@
 import {ReactElement, useRef, useState} from "react";
 import styles from "@/styles/booking.module.css"
-import {Alert, Snackbar} from "@mui/material";
+import {Alert, Button, Snackbar} from "@mui/material";
 import {userData, SnackbarComponent} from "@/utils/types";
 import * as EmailValidator from 'email-validator'
+import {LogoDev} from "@mui/icons-material";
 export default function ({setUserData,snackbarComponent}: {setUserData:(data: userData) => void, snackbarComponent:SnackbarComponent}):ReactElement {
 
     const plateInputRef = useRef<HTMLInputElement>(null)
@@ -119,7 +120,21 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: us
         }
         return true;
     }
+    const devLogin = () => {
+        setUserData({
+            telephone: "+49 152 342 949 35",
+            prename: "Marvin",
+            name: "Kaiser",
+            plate: "HDHM227",
+            brand: "VW",
+            email: "marvinkaiser20@gmail.com",
+            company: "Bechtle AG"
 
+        });
+        snackbarComponent.displaySnackbar(<Alert severity={"success"}>
+            Successfully logged in!
+        </Alert>)
+    }
 
 
 
@@ -156,6 +171,7 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: us
                     </li>
                 </ul>
                 <button onClick={submitRequest}>Absenden</button>
+                <Button variant={"contained"} onClick={devLogin}>Login DEV <LogoDev/></Button>
             </div>
 
         </>
