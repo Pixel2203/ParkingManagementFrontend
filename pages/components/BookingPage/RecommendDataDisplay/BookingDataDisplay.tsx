@@ -2,13 +2,27 @@ import {CSSProperties, ReactElement, useEffect, useState} from "react";
 import {BookingFilterObject, RecommendationTicket} from "@/utils/types";
 import {getTimeAsString} from "@/utils/TimeDateHandler";
 import styles from "./BookingDataDisplay.module.css"
-export default function ({mydata,barWidth,filterData} : {mydata:Record<number,Array<RecommendationTicket>>, barWidth?:number, filterData:BookingFilterObject}):ReactElement {
+export default function ({mydata,tableWidth,filterData} : {mydata:Record<number,Array<RecommendationTicket>>, tableWidth?:number, filterData:BookingFilterObject}):ReactElement {
     const [displayData, setDisplayData] = useState<Record<number, Array<RecommendationTicket>>>()
+    tableWidth = tableWidth ? tableWidth : 1200
     // Styling
+    const balkenWidth = tableWidth ? tableWidth-50 : 800;
+    const minuteWidth = balkenWidth/(23*60 + 59)*2;
+    const tableProperties:CSSProperties = {
+        maxWidth:tableWidth ? tableWidth + "px" : "800px",
 
-    const balkenWidth = barWidth ?? 800;
-    const minuteWidth = balkenWidth/(23*60 + 59) *2;
+    }
+    const tableMetadataProperties:CSSProperties = {
+        width: "50px",
+        maxWidth: "50px",
+        minWidth: "50px"
 
+    }
+    const timeDisplay:CSSProperties = {
+        maxWidth: "0px",
+        textAlign:"left",
+    }
+    console.log("MIN: " + minuteWidth * 60)
     // Styling END
 
     // Highest and Lowest allowed Time
@@ -71,16 +85,41 @@ export default function ({mydata,barWidth,filterData} : {mydata:Record<number,Ar
     return (
         <>
             <div className={styles.contentWrapper}>
-                <table className={styles.dataTable}>
+                <table className={styles.dataTable} style={tableProperties}>
                     <tr>
-                        <th>SensorId</th><th>Balken</th>
+                        <th style={tableMetadataProperties}>ID</th>
+                        <th style={timeDisplay}>00:00</th>
+                        <th style={timeDisplay}>01:00</th>
+                        <th style={timeDisplay}>02:00</th>
+                        <th style={timeDisplay}>03:00</th>
+                        <th style={timeDisplay}>04:00</th>
+                        <th style={timeDisplay}>05:00</th>
+                        <th style={timeDisplay}>06:00</th>
+                        <th style={timeDisplay}>07:00</th>
+                        <th style={timeDisplay}>08:00</th>
+                        <th style={timeDisplay}>09:00</th>
+                        <th style={timeDisplay}>10:00</th>
+                        <th style={timeDisplay}>11:00</th>
+                        <th style={timeDisplay}>12:00</th>
+                        <th style={timeDisplay}>13:00</th>
+                        <th style={timeDisplay}>14:00</th>
+                        <th style={timeDisplay}>15:00</th>
+                        <th style={timeDisplay}>16:00</th>
+                        <th style={timeDisplay}>17:00</th>
+                        <th style={timeDisplay}>18:00</th>
+                        <th style={timeDisplay}>19:00</th>
+                        <th style={timeDisplay}>20:00</th>
+                        <th style={timeDisplay}>21:00</th>
+                        <th style={timeDisplay}>22:00</th>
+                        <th style={timeDisplay}>23:00</th>
                     </tr>
 
-                { displayData &&
+
+                { displayData && 1==1 &&
                     Object.keys(displayData).map(key => (
                         <tr>
-                            <td>{key}</td>
-                            <td>
+                            <td style={tableMetadataProperties}>{key}</td>
+                            <td colSpan={24}>
                                 <div className={styles.dataBar} style={{width: balkenWidth + "px"}}>
                                     {
                                         displayData[Number(key)].map(ticket => (
@@ -88,15 +127,8 @@ export default function ({mydata,barWidth,filterData} : {mydata:Record<number,Ar
                                                 width: (ticket.endDate - ticket.startDate)/1000/60 / 2 * minuteWidth,
                                                 marginLeft: (ticket.startDate - lowestDate.getTime()) / 1000/ 60 / 2 * minuteWidth,
                                                 backgroundColor: ticket.bookingId==9999? "blue" : "green",
-                                                border: "1px solid red"
                                             }}>
-                                                {getTimeAsString(
-                                                    new Date(ticket.startDate)
-                                                )}
-                                                -
-                                                {getTimeAsString(
-                                                    new Date(ticket.endDate)
-                                                )}
+
                                             </section>
                                         ))
                                     }
