@@ -5,36 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfb44da4-ab49-48af-8579-519928cb962d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/components/AppHeader/UserDropDown/UserDropDown.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/components/AppHeader/UserDropDown/UserDropDown.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/components/BookingPage/BookingPage.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/components/BookingPage/BookingPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/BookingAccordion/BookingAccordion.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/Accordion/Accordion.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/BookingAccordion/BookingAccordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/Accordion/Accordion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/BookingForm.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/BookingForm.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/BookingHandler.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/BookingList/BookingList.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingList/BookingList.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/BookingList/BookingList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingList/BookingList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/BookingForm/TimeInput/TimeInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/TimeInput/TimeInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/RequestHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/RequestHandler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/Home.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/Home.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +102,7 @@
       <workItem from="1692721746917" duration="22794000" />
       <workItem from="1692786166297" duration="66695000" />
       <workItem from="1693288620095" duration="8872000" />
-      <workItem from="1693314471129" duration="14144000" />
+      <workItem from="1693314471129" duration="18784000" />
     </task>
     <servers />
   </component>
