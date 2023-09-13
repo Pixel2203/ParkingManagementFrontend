@@ -4,10 +4,10 @@ import {
     customDateObject,
     sensorData,
     userData,
-    BookingResponse, SnackbarComponent, Booking, BookingHandlerDTO
+    BookingResponse, SnackbarComponent, Booking, BookingHandlerDTO, BookingHandlerConfig
 } from "@/utils/types";
 import {Accordion, AccordionSummary, Alert, Button} from "@mui/material";
-import {getBookingsBySensorAndDate, sendBookingRequest} from "@/pages/components/RequestHandler";
+import {getBookingsBySensorAndDate, sendBookingRequest} from "@/utils/RequestHandler";
 import {
     getDateAsString,
 } from "@/utils/TimeDateHandler";
@@ -16,7 +16,8 @@ import BookingList from "@/pages/components/ParkingLotInfo/BookingList/BookingLi
 import BookingAccordion from "@/pages/components/Accordion/Accordion";
 import BookingHandler from "@/pages/components/ParkingLotInfo/BookingHandler/BookingHandler";
 import {Clear, PlaylistAdd} from "@mui/icons-material";
-export default function ({parkingLotData,setShowBookingWindow,userData,snackbar} : {parkingLotData: sensorData,setShowBookingWindow: (show: boolean) => void , userData:userData,snackbar:SnackbarComponent}):ReactElement {
+import {NO_SERVER_FOUND_ALERT} from "@/utils/fields";
+export default function ({parkingLotData,setShowBookingWindow,userData,snackbar, config} : {parkingLotData: sensorData,setShowBookingWindow: (show: boolean) => void , userData:userData,snackbar:SnackbarComponent, config?:BookingHandlerConfig }):ReactElement {
     const [bookingList, setBookingList] = useState<Array<Booking>>();
     const [currentDateObject,setCurrentDateObject] = useState<Date>();
     const [futureDateObject,setFutureDateObject] = useState<Date>();
@@ -54,6 +55,10 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar}
            return;
         }
         getBookingsBySensorAndDate(sensorId,currentDateObject).then(result => {
+            if(!result){
+                snackbar.displaySnackbar(NO_SERVER_FOUND_ALERT)
+                return;
+            }
             if(result.worked){
                 setBookingList(result.bookingList)
             }
@@ -85,7 +90,7 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar}
                             </section>
                         </BookingAccordion>
                         <BookingAccordion  title={"Buchung"} className={styles.accordion}>
-                            <BookingHandler handlerDTO={bookingHandlerDTO}/>
+                            <BookingHandler handlerDTO={bookingHandlerDTO} config={config}/>
                         </BookingAccordion>
                         {
                             bookingList &&

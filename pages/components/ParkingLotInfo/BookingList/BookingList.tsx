@@ -8,6 +8,7 @@ export default function ({bookingList, className} : {bookingList: Array<Booking>
         booking.endDate = new Date(booking.endDate);
         booking.startDate = new Date(booking.startDate);
     });
+    console.log(bookingList)
     return (
         <div className={className}>
             <ul className={styles.bookingList}>

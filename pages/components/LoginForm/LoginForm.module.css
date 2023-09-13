@@ -1,0 +1,12 @@
+.contentWrapper{
+
+}
+.contentWrapper ul {
+    list-style-type: none;
+}
+.contentWrapper ul li {
+    margin: 20px 0;
+}
+.inputField {
+    margin: 10px;
+}

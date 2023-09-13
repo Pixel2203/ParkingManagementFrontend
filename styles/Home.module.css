@@ -1,4 +1,9 @@
 .body {
   width: 60%;
   margin-left: 20%;
+  /*background-color: rgb(243, 245, 255);*/
+  height: 100vh;
+}
+.wrapper {
+  /*background-color: #76a1bd;*/
 }

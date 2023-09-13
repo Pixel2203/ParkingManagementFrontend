@@ -36,28 +36,31 @@ export default function Home() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <main className={styles.body}>
-              <AppHeader userData={userData} setContentSite={setContentSite}/>
-              {
-                  !userData &&
-                  <LoginForm setUserData={setUserData} snackbarComponent={snackbarComponent}/>
-              }
-              {
-                  userData && contentSite=="ppl" &&
-                  <ParkingLotList uData={userData} snackbar={snackbarComponent}/>
-              }
-              {
-                  userData && contentSite=="pfp" &&
-                  <ProfilePage userData={userData}/>
-              }
-              {
-                  userData && contentSite=="br" &&
-                  <BookingPage/>
-              }
-              <Snackbar open={open} onClose={hideSnackbar} autoHideDuration={3000}  >
-                  {snackbarContent}
-              </Snackbar>
-          </main>
+            <div className={styles.wrapper}>
+            <main className={styles.body}>
+                <AppHeader setUserData={setUserData} userData={userData} setContentSite={setContentSite}/>
+                {
+                    !userData &&
+                    <LoginForm setUserData={setUserData} snackbarComponent={snackbarComponent}/>
+                }
+                {
+                    userData && contentSite=="ppl" &&
+                    <ParkingLotList uData={userData} snackbar={snackbarComponent}/>
+                }
+                {
+                    userData && contentSite=="pfp" &&
+                    <ProfilePage userData={userData} snackbar={snackbarComponent}/>
+                }
+                {
+                    userData && contentSite=="br" &&
+                    <BookingPage snackbar={snackbarComponent} userData={userData}/>
+                }
+                <Snackbar open={open} onClose={hideSnackbar} autoHideDuration={3000}  >
+                    {snackbarContent}
+                </Snackbar>
+            </main>
+            </div>
+
         </>
       )
 }

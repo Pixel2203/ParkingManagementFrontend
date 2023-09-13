@@ -5,9 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfb44da4-ab49-48af-8579-519928cb962d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/Validator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/fields.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/AppHeader/UserDropDown/UserDropDown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/AppHeader/UserDropDown/UserDropDown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/BookingPage/BookingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/BookingPage/BookingPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingList/BookingList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingList/BookingList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/RequestHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/RequestHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/Home.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/Home.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +38,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
         <option value="CSS File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -50,7 +68,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/pages/components/BookingPage&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/pages/components/LoginForm&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -64,18 +82,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/components/LoginForm" />
       <recent name="$PROJECT_DIR$/pages/components/BookingPage" />
       <recent name="$PROJECT_DIR$/pages/components/ProfilePage/MyBookings" />
       <recent name="$PROJECT_DIR$/pages/components/ProfilePage/BookingHistory" />
       <recent name="$PROJECT_DIR$/pages/components/ProfilePage" />
-      <recent name="$PROJECT_DIR$/pages/components/AppHeader/UserDropDown" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/pages/components" />
       <recent name="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler" />
       <recent name="$PROJECT_DIR$/pages/components/ParkingLotInfo" />
       <recent name="$PROJECT_DIR$/pages/components/BookingHandler/ParkingLotInfo" />
-      <recent name="$PROJECT_DIR$/pages/components/BookingForm" />
     </key>
   </component>
   <component name="RunManager">
@@ -103,7 +121,10 @@
       <workItem from="1692721746917" duration="22794000" />
       <workItem from="1692786166297" duration="66695000" />
       <workItem from="1693288620095" duration="8872000" />
-      <workItem from="1693314471129" duration="22948000" />
+      <workItem from="1693314471129" duration="25834000" />
+      <workItem from="1693465820382" duration="8844000" />
+      <workItem from="1694151118497" duration="28754000" />
+      <workItem from="1694612057878" duration="4226000" />
     </task>
     <servers />
   </component>

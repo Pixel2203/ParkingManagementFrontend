@@ -1,11 +1,69 @@
 import {Dispatch, ReactElement, SetStateAction} from "react";
 import {AlertColor} from "@mui/material";
+import {getTimeAsString} from "@/utils/TimeDateHandler";
 
+
+// Backend Requests
+export interface UserRequest {
+    user: userData
+}
+export interface BookingRequest {
+    startDateInMilliseconds: number,
+    endDateInMilliseconds: number,
+    user: userData,
+    sensorId: number
+
+}
+// Backend Responses
+type ResponseObject = {
+    message: string,
+    worked: boolean
+}
+export type ParkingRecommendationResponse = ResponseObject & {
+    tickets:Record<number, Array<RecommendationTicket>>
+}
+export type BookingResponse = ResponseObject & {
+    parkingTicket: ParkingTicket
+}
+export type BookingListResponse = ResponseObject & {
+    bookingList: Array<Booking>
+}
+export type FullSensorDataResponse = ResponseObject & {
+
+    sensors: Array<sensorData> | null
+}
+export type FullUserResponse = ResponseObject & {
+    user: userData
+}
+
+// Components
 export interface SnackbarComponent {
     displaySnackbar: (content:ReactElement) => void
 }
+export interface BookingHandlerDTO {
+    setCurrentDateObject: Dispatch<SetStateAction<Date | undefined>>,
+    currentDateObject: Date | undefined
+    setFutureDateObject: Dispatch<SetStateAction<Date | undefined>>,
+    futureDateObject: Date |undefined
+}
+export interface BookingHandlerConfig {
+    timeConfig?: {
+        startDateInMillis: number,
+    },
+    options? : {
+        enableDatePicker: boolean
+        allowPastTimes: boolean
+    }
+}
+export interface TimeInputComponent  {
+    setStartTime: (time:number) => void,
+    updatedValue: string,
+    isToday: boolean
+}
 
-export interface userData {
+// Datatypes
+export type userData = {
+    id?: number
     prename: string,
     name: string,
     plate: string,
@@ -13,7 +71,8 @@ export interface userData {
     model?: string | undefined,
     company: string,
     email: string,
-    telephone: string
+    telephone: string,
+    penalties?: number
 }
 
 export type sensorData = {
@@ -30,22 +89,21 @@ export type customDateObject = {
     minute: string,
     hour: string
 }
-export interface parkingOverview {
+export type parkingOverview = {
     parking_lots: Array<sensorData>
 }
-export type ResponseObject = {
-    message: string,
-    worked: boolean
-}
-export interface ParkingTicket {
-
+type Ticket = {
     name: string,
-    bookingId: number,
+
+}
+export type ParkingTicket = Ticket & {
+
+    id: number,
     startDate: Date,
     endDate: Date,
     plate: string
 }
-export interface RecommendationTicket {
+export type RecommendationTicket = Ticket & {
     name: string,
     bookingId: 0 | 9999,
     startDate: number,
@@ -54,45 +112,19 @@ export interface RecommendationTicket {
 }
 
 
-export type ParkingRecommendationResponse = ResponseObject & {
-    tickets:Record<number, Array<RecommendationTicket>>
-}
-export type BookingResponse = ResponseObject & {
-    parkingTicket: ParkingTicket
-}
-export type BookingListResponse = ResponseObject & {
-    bookingList: Array<Booking>
-}
-export type FullSensorDataResponse = ResponseObject & {
 
-    sensors: Array<sensorData> | null
-}
 
 export interface Booking {
     id:number,
-    startDate:number | Date,
-    endDate:number | Date,
+    startDate:number,
+    endDate:number,
     plate:string
 }
-export interface BookingRequest {
-    startDateInMilliseconds: number,
-    endDateInMilliseconds: number,
-    userData: userData,
-    sensorId: number
 
-}
-export interface BookingHandlerDTO {
-    setCurrentDateObject: Dispatch<SetStateAction<Date | undefined>>,
-    currentDateObject: Date | undefined
-    setFutureDateObject: Dispatch<SetStateAction<Date | undefined>>,
-    futureDateObject: Date |undefined
-}
+
 export interface BookingFilterObject {
     dateFilter : {
         selectedDate: Date
     }
-    timeFilter?: {
-        startHours: number,
-        startMinutes: number
-    }
 }
+

@@ -1,9 +1,29 @@
 import {CSSProperties, ReactElement, useEffect, useState} from "react";
-import {BookingFilterObject, RecommendationTicket} from "@/utils/types";
-import {getTimeAsString} from "@/utils/TimeDateHandler";
+import {
+    BookingFilterObject,
+    BookingHandlerConfig,
+    RecommendationTicket,
+    sensorData,
+    SnackbarComponent,
+    userData
+} from "@/utils/types";
+import {getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
 import styles from "./BookingDataDisplay.module.css"
-export default function ({mydata,tableWidth,filterData} : {mydata:Record<number,Array<RecommendationTicket>>, tableWidth?:number, filterData:BookingFilterObject}):ReactElement {
+import ParkingLotInfo from "@/pages/components/ParkingLotInfo/ParkingLotInfo";
+import {ERROR_NO_DATA_ALERT} from "@/utils/fields";
+interface BookingDataDisplayProperties {
+    mydata:Record<number,Array<RecommendationTicket>>,
+    tableWidth?:number,
+    filterData:BookingFilterObject,
+    snackbar:SnackbarComponent,
+    userData:userData
+}
+
+export default function ({mydata,tableWidth,filterData, snackbar, userData} : BookingDataDisplayProperties):ReactElement {
     const [displayData, setDisplayData] = useState<Record<number, Array<RecommendationTicket>>>()
+    const [showBookingWindow,setShowBookingWindow] = useState<boolean>(false);
+    const [parkingLotData,setParkingLotData] = useState<sensorData>()
+    const [config,setConfig] = useState<BookingHandlerConfig>();
     tableWidth = tableWidth ? tableWidth : 1200
     // Styling
     const balkenWidth = tableWidth ? tableWidth-50 : 800;
@@ -22,7 +42,6 @@ export default function ({mydata,tableWidth,filterData} : {mydata:Record<number,
         maxWidth: "0px",
         textAlign:"left",
     }
-    console.log("MIN: " + minuteWidth * 60)
     // Styling END
 
     // Highest and Lowest allowed Time
@@ -30,28 +49,18 @@ export default function ({mydata,tableWidth,filterData} : {mydata:Record<number,
     highestDate.setHours(23,59);
     const lowestDate = new Date(filterData.dateFilter.selectedDate.getTime());
     lowestDate.setHours(0,0);
+    // FILTER
+
 
 
     const calculateBlockedTimes = (sensorId:number):Array<RecommendationTicket> => {
-        console.log("RECHNE AUS!!!")
         const availableTimes:Array<RecommendationTicket> = mydata[sensorId];
+        console.log("AVAILABLES " + sensorId)
+        console.log(availableTimes)
         const blockers: Array<RecommendationTicket> = []
         for(let i = 0; i < availableTimes.length; i++){
             const isEarliestEntry = i==0;
             const isLast:boolean = (i+1==availableTimes.length);
-            // Zwischendrin
-            if(!isLast && availableTimes[i].endDate < availableTimes[i+1].startDate){
-                // Push a blocker entry
-                console.log("EINTRAG " + i + " von " + availableTimes.length)
-                blockers.push({
-                    startDate: availableTimes[i].endDate,
-                    endDate: availableTimes[i+1].startDate,
-                    bookingId: 9999,
-                    plate: null,
-                    name: availableTimes[i].name
-                })
-                continue;
-            }
             if(isEarliestEntry){
                 if(availableTimes[i].startDate > lowestDate.getTime()){
                     blockers.push({
@@ -63,6 +72,19 @@ export default function ({mydata,tableWidth,filterData} : {mydata:Record<number,
                     })
                 }
             }
+            // Zwischendrin
+            if(!isLast && availableTimes[i].endDate < availableTimes[i+1].startDate){
+                // Push a blocker entry
+                blockers.push({
+                    startDate: availableTimes[i].endDate,
+                    endDate: availableTimes[i+1].startDate,
+                    bookingId: 9999,
+                    plate: null,
+                    name: availableTimes[i].name
+                })
+                continue;
+            }
+
         }
         return blockers;
     }
@@ -82,6 +104,33 @@ export default function ({mydata,tableWidth,filterData} : {mydata:Record<number,
         setDisplayData(blockDaten)
 
     },[mydata])
+    const clickSection = (ticket:RecommendationTicket, sensorId:number) => {
+        if(!displayData){
+            snackbar.displaySnackbar(ERROR_NO_DATA_ALERT)
+            return
+        }
+        if(ticket.bookingId == 9999){
+            return;
+        }
+        setConfig({
+            timeConfig: {
+                startDateInMillis: ticket.startDate
+            },
+            options: {
+                enableDatePicker: false,
+                allowPastTimes: false
+            }
+        })
+        setParkingLotData(
+            {
+                name: ticket.name,
+                status: false,
+                bookable: true,
+                id: sensorId
+            }
+        )
+        setShowBookingWindow(true);
+    }
     return (
         <>
             <div className={styles.contentWrapper}>
@@ -115,6 +164,7 @@ export default function ({mydata,tableWidth,filterData} : {mydata:Record<number,
                     </tr>
 
 
+
                 { displayData && 1==1 &&
                     Object.keys(displayData).map(key => (
                         <tr>
@@ -123,13 +173,16 @@ export default function ({mydata,tableWidth,filterData} : {mydata:Record<number,
                                 <div className={styles.dataBar} style={{width: balkenWidth + "px"}}>
                                     {
                                         displayData[Number(key)].map(ticket => (
-                                            <section style={{
-                                                width: (ticket.endDate - ticket.startDate)/1000/60 / 2 * minuteWidth,
-                                                marginLeft: (ticket.startDate - lowestDate.getTime()) / 1000/ 60 / 2 * minuteWidth,
-                                                backgroundColor: ticket.bookingId==9999? "blue" : "green",
-                                            }}>
+                                            <>
+                                                <section style={{
+                                                    width: (ticket.endDate - ticket.startDate)/1000/60 / 2 * minuteWidth,
+                                                    marginLeft: (ticket.startDate - lowestDate.getTime()) / 1000/ 60 / 2 * minuteWidth,
+                                                    background: ticket.bookingId==9999? "red" : "#6beb34"
+                                                }} onClick={() => clickSection(ticket, Number(key))}>
 
-                                            </section>
+                                                </section>
+                                            </>
+
                                         ))
                                     }
                                 </div>
@@ -137,7 +190,13 @@ export default function ({mydata,tableWidth,filterData} : {mydata:Record<number,
                         </tr>
                     ))
                 }
+
+
                 </table>
+                {
+                    showBookingWindow && parkingLotData && userData &&
+                    <ParkingLotInfo config={config} snackbar={snackbar} parkingLotData={parkingLotData} setShowBookingWindow={setShowBookingWindow} userData={userData}/>
+                }
             </div>
         </>
     )

@@ -2,13 +2,17 @@ import {MutableRefObject, ReactElement, useEffect, useRef, useState} from "react
 import styles from "@/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.module.css";
 import {getDateAsString, getFutureDate, getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
 import TimeInput from "@/pages/components/ParkingLotInfo/TimeInput/TimeInput";
-import {BookingHandlerDTO} from "@/utils/types";
+import {BookingHandlerDTO, BookingHandlerConfig, TimeInputComponent} from "@/utils/types";
 
-export default function ({handlerDTO}: {handlerDTO:BookingHandlerDTO}):ReactElement {
+export default function ({handlerDTO, config}: {handlerDTO:BookingHandlerDTO, config?:BookingHandlerConfig}):ReactElement {
     const {setFutureDateObject,setCurrentDateObject,currentDateObject,futureDateObject} = handlerDTO;
     const [futureMin,setFutureMin] = useState(30);
     const datepickerRef:MutableRefObject<HTMLInputElement> = useRef<HTMLInputElement>() as any;
-    const [startTime , setStartTime] = useState<string>()
+    const [startTime , setStartTime] = useState<string>();
+    let disabledDatePicker = false;
+    useEffect(() => {
+        updateTimeAndDateInput();
+    }, [futureMin,startTime] )
     const updateTimeAndDateInput = () => {
         const currentDate = new Date();
         if(datepickerRef.current && startTime){
@@ -69,17 +73,31 @@ export default function ({handlerDTO}: {handlerDTO:BookingHandlerDTO}):ReactElem
         selectedDateIsToday =  dateTodayString == dateSelectedString;
     }
 
-    const TimeInputComponent = {
-        setStartTime: setStartTime,
+    const TimeInputComponent:TimeInputComponent = {
+        setStartTime: setStartTime as any,
         updatedValue: getTimeAsString(currentDateObject),
         isToday: selectedDateIsToday
     }
+    const getDefaultDate = ():Date => {
+        if(config && config.timeConfig){
+            return new Date(config.timeConfig.startDateInMillis)
+        }
+        return new Date();
+    }
+    // Config Handling
+    if(config){
+        if(config.timeConfig){
+            const timeValue = new Date();
+            if(timeValue.getTime() < config.timeConfig.startDateInMillis || config.options?.allowPastTimes){
+                TimeInputComponent.updatedValue = getTimeAsString(new Date(config.timeConfig.startDateInMillis));
+            }
+        }
+        if(config.options){
+            disabledDatePicker = !config.options.enableDatePicker;
+        }
 
-    useEffect(() => {
-        updateTimeAndDateInput();
 
-
-    }, [futureMin,startTime] )
+    }
     return (
         <section className={styles.inputContainer}>
             <section>
@@ -87,8 +105,10 @@ export default function ({handlerDTO}: {handlerDTO:BookingHandlerDTO}):ReactElem
                 <input ref={datepickerRef}
                        onChange={updateTimeAndDateInput}
                        type={"date"}
-                       defaultValue={putIntoDateCorrectDateFormat(new Date)}
-                       className={styles.datePicker}/>
+                       defaultValue={putIntoDateCorrectDateFormat(getDefaultDate())}
+                       className={styles.datePicker}
+                        disabled={disabledDatePicker}
+                />
             </section>
             <section>
                 <h4>Zeit</h4>

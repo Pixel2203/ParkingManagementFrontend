@@ -2,13 +2,18 @@ import {ReactElement, useEffect, useRef, useState} from "react";
 import {FullSensorDataResponse, sensorData, parkingOverview, userData, SnackbarComponent} from "@/utils/types";
 import styles from "./ParkingLotList.module.css"
 import BookingForm from "@/pages/components/ParkingLotInfo/ParkingLotInfo";
-import {getAllSensorData} from "@/pages/components/RequestHandler";
-import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
+import {getAllSensorData} from "@/utils/RequestHandler";
+import {Alert, Avatar, Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
+import {NO_SERVER_FOUND_ALERT} from "@/utils/fields";
 export default function ({uData,snackbar}: {uData:userData,snackbar:SnackbarComponent}):ReactElement {
     const [parkingData, setParkingData] = useState<parkingOverview>();
     const [showBookingWindow, setShowBookingWindow] = useState(false);
     useEffect(() => {
-        getAllSensorData().then((result: FullSensorDataResponse) => {
+        getAllSensorData().then((result: FullSensorDataResponse | undefined) => {
+            if(!result){
+                snackbar.displaySnackbar(NO_SERVER_FOUND_ALERT)
+                return;
+            }
             if(result.worked && result.sensors){
                 const overview: parkingOverview = {
                     parking_lots: result.sensors
@@ -16,6 +21,8 @@ export default function ({uData,snackbar}: {uData:userData,snackbar:SnackbarComp
                 setParkingData(overview);
             }
         })
+
+
     }, [])
     let selectedParkingLot = useRef<sensorData>();
     const clickParkingLot = (parkId:number) => {

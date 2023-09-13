@@ -1,10 +1,11 @@
 import {ReactElement, useState} from "react";
 import styles from "./ProfilePage.module.css";
 import {Button, ButtonGroup, ToggleButton, ToggleButtonGroup} from "@mui/material";
-import {Booking, userData} from "@/utils/types";
+import {Booking, SnackbarComponent, userData} from "@/utils/types";
 import BookingList from "@/pages/components/ParkingLotInfo/BookingList/BookingList";
-import {getBookingHistoryByPlate, getFutureBookingsByPlate} from "@/pages/components/RequestHandler";
-export default function ({userData}: {userData:userData}):ReactElement {
+import {getBookingHistoryByPlate, getFutureBookingsByPlate} from "@/utils/RequestHandler";
+import {ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
+export default function ({userData, snackbar}: {userData:userData, snackbar:SnackbarComponent}):ReactElement {
     const [bookings,setBookings] = useState<Array<Booking>>()
     const [alignment, setAlignment] = useState('fb');
 
@@ -17,6 +18,12 @@ export default function ({userData}: {userData:userData}):ReactElement {
 
     const requestFutureBookings = () => {
         getFutureBookingsByPlate(userData.plate).then(result => {
+            if(!result){
+                snackbar.displaySnackbar(
+                    NO_SERVER_FOUND_ALERT
+                )
+                return;
+            }
             if (result.worked) {
                 const bookingList: Array<Booking> = result.bookingList;
                 bookingList.forEach(booking => {
@@ -29,6 +36,12 @@ export default function ({userData}: {userData:userData}):ReactElement {
     }
     const requestBookingHistory = () => {
         getBookingHistoryByPlate(userData.plate).then(result => {
+            if(!result){
+                snackbar.displaySnackbar(
+                    NO_SERVER_FOUND_ALERT
+                )
+                return;
+            }
             if(result.worked){
                 const bookingList:Array<Booking> = result.bookingList;
                 bookingList.forEach(booking => {

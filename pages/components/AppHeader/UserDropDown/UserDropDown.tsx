@@ -3,7 +3,7 @@ import {userData} from "@/utils/types";
 import styles from "./UserDropDown.module.css";
 import {Avatar, Button, ClickAwayListener} from "@mui/material";
 import {Logout, Person} from "@mui/icons-material";
-export default function ({userData, setContentSite, setDisplayDropDown}:{userData:userData, setContentSite:(site:string) => void , setDisplayDropDown: (display:boolean) => void}):ReactElement {
+export default function ({userData, setUserData, setContentSite, setDisplayDropDown}:{userData:userData, setUserData: (data:userData | null) => void, setContentSite:(site:string) => void , setDisplayDropDown: (display:boolean) => void}):ReactElement {
     const dropDownRef:MutableRefObject<HTMLDivElement> = useRef<ReactElement>(<></>) as unknown as MutableRefObject<HTMLDivElement>;
     useEffect(() => {
         dropDownRef.current.style.opacity = "1";
@@ -13,6 +13,9 @@ export default function ({userData, setContentSite, setDisplayDropDown}:{userDat
         setContentSite("pfp");
         setDisplayDropDown(false);
 
+    }
+    const logout = () => {
+        setUserData(null);
     }
     return (
         <ClickAwayListener onClickAway={() => setDisplayDropDown(false)}>
@@ -71,7 +74,7 @@ export default function ({userData, setContentSite, setDisplayDropDown}:{userDat
                                </Button>
                             </li>
                             <li >
-                                <Button className={styles.button}>
+                                <Button className={styles.button} onClick={logout}>
                                     <div>
                                         <Logout/>
                                         <span>Abmelden</span>
