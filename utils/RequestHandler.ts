@@ -1,10 +1,10 @@
 import {
     BookingRequest,
     FullSensorDataResponse,
-    userData,
-    BookingResponse,
-    BookingListResponse,
-    ParkingRecommendationResponse, FullUserResponse, UserRequest
+    User,
+    FullBookingResponse,
+    FullBookingListResponse,
+    FullParkingRecommendationResponse, FullUserResponse, UserRequest
 } from "./types";
 
 
@@ -14,13 +14,15 @@ export function getAllSensorData():Promise<FullSensorDataResponse | undefined> {
     });
 
 }
-export function sendBookingRequest(currentDate: Date,futureDate:Date, userData:userData, sensorId:number):Promise<BookingResponse> {
+export function sendBookingRequest(currentDate: Date, futureDate:Date, userData:User, sensorId:number):Promise<FullBookingResponse | undefined> {
     const requestData: BookingRequest = {
-        startDateInMilliseconds: currentDate.getTime(),
-        endDateInMilliseconds: futureDate.getTime(),
+        startDate: currentDate.getTime(),
+        endDate: futureDate.getTime(),
         user: userData,
         sensorId: sensorId
     }
+    console.log("BUCHUNG ANGEFORDERT: ")
+    console.log(requestData)
     return fetch("http://localhost:8080/book", {
         method: "POST",
         headers: {
@@ -32,27 +34,27 @@ export function sendBookingRequest(currentDate: Date,futureDate:Date, userData:u
     }).then(result => result.json())
 }
 
-export function getBookingsBySensorAndDate(sensorId:number, date:Date):Promise<BookingListResponse | null> {
+export function getBookingsBySensorAndDate(sensorId:number, date:Date):Promise<FullBookingListResponse | undefined> {
     return fetch("http://localhost:8080/bookings?sensorId=" + sensorId + "&dateInMilliseconds=" + date.getTime()).then(response => response.json()).catch(reason => {
         return undefined;
     });
 }
-export function getFutureBookingsByPlate(plate:string):Promise<BookingListResponse | null> {
+export function getFutureBookingsByPlate(plate:string):Promise<FullBookingListResponse | undefined> {
     return fetch("http://localhost:8080/futurebookings?plate=" + plate).then(res => res.json()).catch(reason => {
         return undefined;
     });
 }
-export function getBookingHistoryByPlate(plate:string):Promise<BookingListResponse | null> {
+export function getBookingHistoryByPlate(plate:string):Promise<FullBookingListResponse | undefined> {
     return fetch("http://localhost:8080/bookinghistory?plate=" + plate).then(res => res.json()).catch(reason => {
         return undefined;
     });
 }
-export function getBookingRecommendations(startDate: Date, duration:number):Promise<ParkingRecommendationResponse | null> {
+export function getBookingRecommendations(startDate: Date, duration:number):Promise<FullParkingRecommendationResponse | undefined> {
     return fetch("http://localhost:8080/recommendations?startDate=" + startDate.getTime() + "&duration=" + duration).then(res => res.json()).catch(reason => {
         return undefined;
     });
 }
-export function checkUserService(user:userData):Promise<FullUserResponse | null> {
+export function checkUserService(user:User):Promise<FullUserResponse | undefined> {
     const request:UserRequest = {
         user: user
     }
@@ -62,5 +64,7 @@ export function checkUserService(user:userData):Promise<FullUserResponse | null>
             "Content-Type": "application/json",
         },
         body: JSON.stringify(request)
-    }).then(res => res.json());
+    }).then(res => res.json()).catch(reason => {
+        return undefined;
+    });
 }

@@ -3,9 +3,9 @@ import {
     BookingFilterObject,
     BookingHandlerConfig,
     RecommendationTicket,
-    sensorData,
+    Sensordata,
     SnackbarComponent,
-    userData
+    User
 } from "@/utils/types";
 import {getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
 import styles from "./BookingDataDisplay.module.css"
@@ -16,13 +16,13 @@ interface BookingDataDisplayProperties {
     tableWidth?:number,
     filterData:BookingFilterObject,
     snackbar:SnackbarComponent,
-    userData:userData
+    userData:User
 }
 
 export default function ({mydata,tableWidth,filterData, snackbar, userData} : BookingDataDisplayProperties):ReactElement {
     const [displayData, setDisplayData] = useState<Record<number, Array<RecommendationTicket>>>()
     const [showBookingWindow,setShowBookingWindow] = useState<boolean>(false);
-    const [parkingLotData,setParkingLotData] = useState<sensorData>()
+    const [parkingLotData,setParkingLotData] = useState<Sensordata>()
     const [config,setConfig] = useState<BookingHandlerConfig>();
     tableWidth = tableWidth ? tableWidth : 1200
     // Styling

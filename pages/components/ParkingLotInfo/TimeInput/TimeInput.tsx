@@ -1,5 +1,5 @@
 import {ReactElement, useEffect, useState} from "react";
-import {customDateObject} from "@/utils/types";
+import {CustomDateObject} from "@/utils/types";
 import {Simulate} from "react-dom/test-utils";
 import timeUpdate = Simulate.timeUpdate;
 import {getTimeAsString} from "@/utils/TimeDateHandler";

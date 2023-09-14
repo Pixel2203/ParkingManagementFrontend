@@ -5,7 +5,7 @@ import {
     RecommendationTicket,
     SnackbarComponent,
     TimeInputComponent,
-    userData
+    User
 } from "@/utils/types";
 import {getBookingRecommendations} from "@/utils/RequestHandler";
 import RecommendDataDisplay from "@/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay";
@@ -13,7 +13,7 @@ import {getDateAsString, getTimeAsString, putIntoDateCorrectDateFormat} from "@/
 import {ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
 import TimeInput from "@/pages/components/ParkingLotInfo/TimeInput/TimeInput";
 
-export default function ({snackbar, userData} : {snackbar:SnackbarComponent, userData:userData}):ReactElement {
+export default function ({snackbar, userData} : {snackbar:SnackbarComponent, userData:User}):ReactElement {
     const [recom, setRecom] = useState<Record<number, Array<RecommendationTicket>>>();
     const [filters, setFilters] = useState<BookingFilterObject>();
     const dateRef = useRef<HTMLInputElement>(null);

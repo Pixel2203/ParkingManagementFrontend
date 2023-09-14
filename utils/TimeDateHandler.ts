@@ -1,20 +1,20 @@
-import {customDateObject} from "@/utils/types";
+import {CustomDateObject} from "@/utils/types";
 
 export const getDateAsString = (date:Date | undefined):string => {
     if(!date){
         return "";
     }
-    const customDate:customDateObject = getFullDate(date);
+    const customDate:CustomDateObject = getFullDate(date);
     return `${customDate.day}.${customDate.month}.${customDate.year}`
 }
 export const getTimeAsString = (date:Date | undefined):string => {
     if(!date){
         return "";
     }
-    const customDate:customDateObject = getFullDate(date);
+    const customDate:CustomDateObject = getFullDate(date);
     return `${customDate.hour}:${customDate.minute}`;
 }
-export const getFullDate = (currentTime: Date):customDateObject => {
+export const getFullDate = (currentTime: Date):CustomDateObject => {
 
     let year:string = currentTime.getFullYear().toString();
 

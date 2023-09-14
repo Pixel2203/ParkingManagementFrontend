@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import LoginForm from "@/pages/components/LoginForm/LoginForm";
 import {ReactElement, useState} from "react";
-import {SnackbarComponent, userData} from "@/utils/types";
+import {SnackbarComponent, User} from "@/utils/types";
 import ParkingLotList from "@/pages/components/ParkingLotList/ParkingLotList";
 import {Snackbar} from "@mui/material";
 import AppHeader from "@/pages/components/AppHeader/AppHeader";
@@ -14,7 +14,7 @@ import BookingPage from "@/pages/components/BookingPage/BookingPage";
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-    const [userData,setUserData] = useState<userData | null>(null)
+    const [userData,setUserData] = useState<User | null>(null)
     const [open,setOpen] = useState<boolean>(false);
     const [snackbarContent, setSnackbarContent] = useState<ReactElement>(<></>);
     const [contentSite,setContentSite] = useState<String>("ppl")

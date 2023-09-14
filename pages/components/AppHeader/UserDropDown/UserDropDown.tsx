@@ -1,9 +1,9 @@
 import {MutableRefObject, ReactElement, useEffect, useRef} from "react";
-import {userData} from "@/utils/types";
+import {User} from "@/utils/types";
 import styles from "./UserDropDown.module.css";
 import {Avatar, Button, ClickAwayListener} from "@mui/material";
 import {Logout, Person} from "@mui/icons-material";
-export default function ({userData, setUserData, setContentSite, setDisplayDropDown}:{userData:userData, setUserData: (data:userData | null) => void, setContentSite:(site:string) => void , setDisplayDropDown: (display:boolean) => void}):ReactElement {
+export default function ({userData, setUserData, setContentSite, setDisplayDropDown}:{userData:User, setUserData: (data:User | null) => void, setContentSite:(site:string) => void , setDisplayDropDown: (display:boolean) => void}):ReactElement {
     const dropDownRef:MutableRefObject<HTMLDivElement> = useRef<ReactElement>(<></>) as unknown as MutableRefObject<HTMLDivElement>;
     useEffect(() => {
         dropDownRef.current.style.opacity = "1";

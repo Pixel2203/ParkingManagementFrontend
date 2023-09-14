@@ -1,12 +1,12 @@
 import {ReactElement, useEffect, useRef, useState} from "react";
-import {FullSensorDataResponse, sensorData, parkingOverview, userData, SnackbarComponent} from "@/utils/types";
+import {FullSensorDataResponse, Sensordata, ParkingOverview, User, SnackbarComponent} from "@/utils/types";
 import styles from "./ParkingLotList.module.css"
 import BookingForm from "@/pages/components/ParkingLotInfo/ParkingLotInfo";
 import {getAllSensorData} from "@/utils/RequestHandler";
 import {Alert, Avatar, Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
 import {NO_SERVER_FOUND_ALERT} from "@/utils/fields";
-export default function ({uData,snackbar}: {uData:userData,snackbar:SnackbarComponent}):ReactElement {
-    const [parkingData, setParkingData] = useState<parkingOverview>();
+export default function ({uData,snackbar}: {uData:User,snackbar:SnackbarComponent}):ReactElement {
+    const [parkingData, setParkingData] = useState<ParkingOverview>();
     const [showBookingWindow, setShowBookingWindow] = useState(false);
     useEffect(() => {
         getAllSensorData().then((result: FullSensorDataResponse | undefined) => {
@@ -15,7 +15,7 @@ export default function ({uData,snackbar}: {uData:userData,snackbar:SnackbarComp
                 return;
             }
             if(result.worked && result.sensors){
-                const overview: parkingOverview = {
+                const overview: ParkingOverview = {
                     parking_lots: result.sensors
                 }
                 setParkingData(overview);
@@ -24,7 +24,7 @@ export default function ({uData,snackbar}: {uData:userData,snackbar:SnackbarComp
 
 
     }, [])
-    let selectedParkingLot = useRef<sensorData>();
+    let selectedParkingLot = useRef<Sensordata>();
     const clickParkingLot = (parkId:number) => {
         if(parkingData){
             parkingData?.parking_lots.map(parkingLot => {

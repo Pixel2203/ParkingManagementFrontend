@@ -3,38 +3,95 @@ import {AlertColor} from "@mui/material";
 import {getTimeAsString} from "@/utils/TimeDateHandler";
 
 
+
+// Datatypes
+type Timestamp = {
+    startDate:number,
+    endDate:number,
+}
+type Schedule = {
+    id: number,
+    plate:string
+}
+export type User = {
+    id?: number
+    prename: string,
+    name: string,
+    plate: string,
+    brand: string,
+    model?: string | undefined,
+    company: string,
+    email: string,
+    telephone: string,
+    penalties?: number
+}
+export type Sensordata = {
+    id: number,
+    name: string,
+    status: boolean,
+    bookable: boolean
+
+}
+export type CustomDateObject = {
+    day: string,
+    month: string,
+    year: string,
+    minute: string,
+    hour: string
+}
+export type ParkingOverview = {
+    parking_lots: Array<Sensordata>
+}
+export type ParkingTicket = Schedule & {
+    name: string
+    startDate: Date,
+    endDate: Date,
+}
+export type RecommendationTicket = Timestamp & {
+    bookingId: 0 | 9999,
+    plate: null,
+    name: string,
+}
+export type Booking = Timestamp & Schedule & {
+    name: string
+}
+
+
+
 // Backend Requests
 export interface UserRequest {
-    user: userData
+    user: User
 }
-export interface BookingRequest {
-    startDateInMilliseconds: number,
-    endDateInMilliseconds: number,
-    user: userData,
+export type BookingRequest = Timestamp & {
+    user: User,
     sensorId: number
 
 }
+
+
 // Backend Responses
 type ResponseObject = {
     message: string,
     worked: boolean
 }
-export type ParkingRecommendationResponse = ResponseObject & {
+export type FullParkingRecommendationResponse = ResponseObject & {
     tickets:Record<number, Array<RecommendationTicket>>
 }
-export type BookingResponse = ResponseObject & {
+export type FullBookingResponse = ResponseObject & {
     parkingTicket: ParkingTicket
 }
-export type BookingListResponse = ResponseObject & {
+export type FullBookingListResponse = ResponseObject & {
     bookingList: Array<Booking>
 }
 export type FullSensorDataResponse = ResponseObject & {
 
-    sensors: Array<sensorData> | null
+    sensors: Array<Sensordata> | null
 }
 export type FullUserResponse = ResponseObject & {
-    user: userData
+    user: User
 }
+
+
 
 // Components
 export interface SnackbarComponent {
@@ -60,71 +117,14 @@ export interface TimeInputComponent  {
     updatedValue: string,
     isToday: boolean
 }
-
-// Datatypes
-export type userData = {
-    id?: number
-    prename: string,
-    name: string,
-    plate: string,
-    brand: string,
-    model?: string | undefined,
-    company: string,
-    email: string,
-    telephone: string,
-    penalties?: number
-}
-
-export type sensorData = {
-    id: number,
-    name: string,
-    status: boolean,
-    bookable: boolean
-
-}
-export type customDateObject = {
-    day: string,
-    month: string,
-    year: string,
-    minute: string,
-    hour: string
-}
-export type parkingOverview = {
-    parking_lots: Array<sensorData>
-}
-type Ticket = {
-    name: string,
-
-}
-export type ParkingTicket = Ticket & {
-
-    id: number,
-    startDate: Date,
-    endDate: Date,
-    plate: string
-}
-export type RecommendationTicket = Ticket & {
-    name: string,
-    bookingId: 0 | 9999,
-    startDate: number,
-    endDate: number,
-    plate: null
-}
-
-
-
-
-export interface Booking {
-    id:number,
-    startDate:number,
-    endDate:number,
-    plate:string
-}
-
-
 export interface BookingFilterObject {
     dateFilter : {
         selectedDate: Date
     }
 }
+
+
+
+
+
 

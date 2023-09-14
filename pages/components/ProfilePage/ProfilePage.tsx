@@ -1,11 +1,11 @@
 import {ReactElement, useState} from "react";
 import styles from "./ProfilePage.module.css";
 import {Button, ButtonGroup, ToggleButton, ToggleButtonGroup} from "@mui/material";
-import {Booking, SnackbarComponent, userData} from "@/utils/types";
+import {Booking, SnackbarComponent, User} from "@/utils/types";
 import BookingList from "@/pages/components/ParkingLotInfo/BookingList/BookingList";
 import {getBookingHistoryByPlate, getFutureBookingsByPlate} from "@/utils/RequestHandler";
 import {ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
-export default function ({userData, snackbar}: {userData:userData, snackbar:SnackbarComponent}):ReactElement {
+export default function ({userData, snackbar}: {userData:User, snackbar:SnackbarComponent}):ReactElement {
     const [bookings,setBookings] = useState<Array<Booking>>()
     const [alignment, setAlignment] = useState('fb');
 
@@ -25,11 +25,6 @@ export default function ({userData, snackbar}: {userData:userData, snackbar:Snac
                 return;
             }
             if (result.worked) {
-                const bookingList: Array<Booking> = result.bookingList;
-                bookingList.forEach(booking => {
-                    booking.startDate = new Date(booking.startDate)
-                    booking.endDate = new Date(booking.endDate)
-                })
                 setBookings(result.bookingList);
             }
         })
@@ -43,11 +38,6 @@ export default function ({userData, snackbar}: {userData:userData, snackbar:Snac
                 return;
             }
             if(result.worked){
-                const bookingList:Array<Booking> = result.bookingList;
-                bookingList.forEach(booking => {
-                    booking.startDate = new Date(booking.startDate)
-                    booking.endDate = new Date(booking.endDate)
-                })
                 setBookings(result.bookingList);
             }
         })

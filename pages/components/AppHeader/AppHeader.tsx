@@ -2,8 +2,8 @@ import {ReactElement, useState} from "react";
 import {Avatar, Badge} from "@mui/material";
 import styles from "./AppHeader.module.css"
 import UserDropDown from "@/pages/components/AppHeader/UserDropDown/UserDropDown";
-import {userData} from "@/utils/types";
-export default function ({userData, setUserData,setContentSite} : {userData:userData | null,setUserData:(data:userData | null) => void, setContentSite:(site: string) => void}):ReactElement {
+import {User} from "@/utils/types";
+export default function ({userData, setUserData,setContentSite} : {userData:User | null,setUserData:(data:User | null) => void, setContentSite:(site: string) => void}):ReactElement {
     const [displayDropDown, setDisplayDropDown] = useState<boolean>(false);
     const updateContentSiteFromDropDown = (site: string) => {
         setContentSite(site);

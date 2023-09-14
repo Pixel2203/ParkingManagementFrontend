@@ -1,13 +1,13 @@
 import {ReactElement, useRef, useState} from "react";
 import {Alert, Button, MenuItem, Select, Snackbar, TextField} from "@mui/material";
-import {userData, SnackbarComponent} from "@/utils/types";
+import {User, SnackbarComponent} from "@/utils/types";
 import * as EmailValidator from 'email-validator'
 import {LogoDev} from "@mui/icons-material";
 import styles from "./LoginForm.module.css"
 import * as RequestHandler from "@/utils/RequestHandler"
 import * as Validator from "@/utils/Validator"
-import {ERROR_ACCOUNT_SUSPENDED_ALERT, SUCCESS_LOGGED_IN_ALERT} from "@/utils/fields";
-export default function ({setUserData,snackbarComponent}: {setUserData:(data: userData) => void, snackbarComponent:SnackbarComponent}):ReactElement {
+import {ERROR_ACCOUNT_SUSPENDED_ALERT, NO_SERVER_FOUND_ALERT, SUCCESS_LOGGED_IN_ALERT} from "@/utils/fields";
+export default function ({setUserData,snackbarComponent}: {setUserData:(data: User) => void, snackbarComponent:SnackbarComponent}):ReactElement {
 
     const plateInputRef = useRef<HTMLInputElement>(null)
     const brandInputRef = useRef<HTMLInputElement>(null)
@@ -18,10 +18,10 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: us
     const emailInputRef = useRef<HTMLInputElement>(null)
     const companySelectRef = useRef<HTMLSelectElement>(null)
 
-    const requestUserService = (user:userData) => {
+    const requestUserService = (user:User) => {
         RequestHandler.checkUserService(user).then(res => {
-            if(res == null){
-                console.log("FEHLER BEIM USERSERVICE!")
+            if(!res){
+                snackbarComponent.displaySnackbar(NO_SERVER_FOUND_ALERT)
                 return;
             }
             if(!res.worked){
@@ -51,7 +51,7 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: us
             if(!nameInputRef.current|| !plateInputRef.current || !companySelectRef.current || !emailInputRef.current || !modelInputRef.current || !brandInputRef.current || !telefonInputRef.current || !preNameInputRef.current){
                 return false;
             }
-            const user:userData = {
+            const user:User = {
                 brand: brandInputRef.current.value,
                 email: emailInputRef.current.value,
                 name: nameInputRef.current.value,
@@ -93,7 +93,7 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: us
 
     }
     const devLogin = () => {
-        const user:userData = {
+        const user:User = {
             telephone: "+49 152 342 949 35",
             prename: "Marvin",
             name: "Kaiser",
