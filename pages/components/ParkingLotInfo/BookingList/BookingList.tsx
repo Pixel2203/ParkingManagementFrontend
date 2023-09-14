@@ -21,7 +21,6 @@ export default function ({bookingList, className} : {bookingList: Array<Booking>
         }
         bookings.push(bookingObj)
     });
-    console.log(bookingList)
     return (
         <div className={className}>
             <ul className={styles.bookingList}>

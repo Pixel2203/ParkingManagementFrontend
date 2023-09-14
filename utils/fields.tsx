@@ -1,12 +1,13 @@
+import * as Textconfig from "@/config/de.json"
 import {Alert} from "@mui/material";
 import {ReactElement} from "react";
 
-export const NO_SERVER_FOUND_TEXT:string = "Konnte Server nicht finden!"
-export const ERROR_NOT_WORKED_RECOMMENDATIONS_TEXT:string = "Konnte keine Empfehlungen laden!"
-export const ERROR_NO_DATA:string = "Konnte Daten nicht laden!";
-export const SUCCESS_LOGGED_IN:string = "Erfolgreich angemeldet!";
-export const ERROR_ACCOUNT_SUSPENDED:string = "Dieser Account wurde gesperrt!";
-export const ERROR_PROCESSING_DATA:string = "Daten konnten nicht verarbeitet werden";
+const NO_SERVER_FOUND_TEXT:string = Textconfig.NO_SERVER_FOUND_TEXT
+const ERROR_NOT_WORKED_RECOMMENDATIONS_TEXT:string = Textconfig.ERROR_NOT_WORKED_RECOMMENDATIONS_TEXT
+const ERROR_NO_DATA:string = Textconfig.ERROR_NO_DATA
+const SUCCESS_LOGGED_IN:string = Textconfig.SUCCESS_LOGGED_IN
+const ERROR_ACCOUNT_SUSPENDED:string = Textconfig.ERROR_ACCOUNT_SUSPENDED
+const ERROR_PROCESSING_DATA:string =  Textconfig.ERROR_PROCESSING_DATA
 
 
 export const NO_SERVER_FOUND_ALERT:ReactElement = <Alert severity={"error"} variant={"filled"}>{NO_SERVER_FOUND_TEXT}</Alert>

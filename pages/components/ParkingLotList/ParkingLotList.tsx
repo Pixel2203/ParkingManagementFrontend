@@ -9,6 +9,9 @@ export default function ({uData,snackbar}: {uData:User,snackbar:SnackbarComponen
     const [parkingData, setParkingData] = useState<ParkingOverview>();
     const [showBookingWindow, setShowBookingWindow] = useState(false);
     useEffect(() => {
+        requestAndProcessSensorData()
+    }, [showBookingWindow])
+    const requestAndProcessSensorData = () => {
         getAllSensorData().then((result: FullSensorDataResponse | undefined) => {
             if(!result){
                 snackbar.displaySnackbar(NO_SERVER_FOUND_ALERT)
@@ -21,9 +24,7 @@ export default function ({uData,snackbar}: {uData:User,snackbar:SnackbarComponen
                 setParkingData(overview);
             }
         })
-
-
-    }, [])
+    }
     let selectedParkingLot = useRef<Sensordata>();
     const clickParkingLot = (parkId:number) => {
         if(parkingData){

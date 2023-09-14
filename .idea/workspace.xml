@@ -5,22 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfb44da4-ab49-48af-8579-519928cb962d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/config/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/de.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/AppHeader/UserDropDown/UserDropDown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/AppHeader/UserDropDown/UserDropDown.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/BookingPage/BookingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/BookingPage/BookingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingList/BookingList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingList/BookingList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/TimeInput/TimeInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/TimeInput/TimeInput.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/RequestHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/RequestHandler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/TimeDateHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/TimeDateHandler.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/fields.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fields.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,25 +52,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/pages/components/LoginForm&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.externalResources&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/pages/components/LoginForm",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.language",
+    "ts.external.directory.path": "/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pages/components/LoginForm" />

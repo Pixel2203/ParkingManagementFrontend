@@ -1,0 +1,8 @@
+{
+  "NO_SERVER_FOUND_TEXT": "Konnte Server nicht finden!",
+  "ERROR_NOT_WORKED_RECOMMENDATIONS_TEXT": "Konnte keine Empfehlungen laden!",
+  "ERROR_NO_DATA": "Konnte Daten nicht laden!",
+  "SUCCESS_LOGGED_IN": "Erfolgreich angemeldet!",
+  "ERROR_ACCOUNT_SUSPENDED": "Dieser Account wurde gesperrt!",
+  "ERROR_PROCESSING_DATA": "Daten konnten nicht verarbeitet werden"
+}

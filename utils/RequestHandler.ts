@@ -21,8 +21,6 @@ export function sendBookingRequest(currentDate: Date, futureDate:Date, userData:
         user: userData,
         sensorId: sensorId
     }
-    console.log("BUCHUNG ANGEFORDERT: ")
-    console.log(requestData)
     return fetch("http://localhost:8080/book", {
         method: "POST",
         headers: {

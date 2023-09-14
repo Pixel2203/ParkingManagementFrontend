@@ -55,8 +55,6 @@ export default function ({mydata,tableWidth,filterData, snackbar, userData} : Bo
 
     const calculateBlockedTimes = (sensorId:number):Array<RecommendationTicket> => {
         const availableTimes:Array<RecommendationTicket> = mydata[sensorId];
-        console.log("AVAILABLES " + sensorId)
-        console.log(availableTimes)
         const blockers: Array<RecommendationTicket> = []
         for(let i = 0; i < availableTimes.length; i++){
             const isEarliestEntry = i==0;
@@ -89,6 +87,7 @@ export default function ({mydata,tableWidth,filterData, snackbar, userData} : Bo
         return blockers;
     }
     useEffect(() => {
+        console.log("NEU LADEN")
         if(!mydata){
             return
         }
@@ -103,7 +102,7 @@ export default function ({mydata,tableWidth,filterData, snackbar, userData} : Bo
 
         setDisplayData(blockDaten)
 
-    },[mydata])
+    },[mydata, showBookingWindow])
     const clickSection = (ticket:RecommendationTicket, sensorId:number) => {
         if(!displayData){
             snackbar.displaySnackbar(ERROR_NO_DATA_ALERT)
