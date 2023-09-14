@@ -40,48 +40,62 @@ export default function ({uData,snackbar}: {uData:User,snackbar:SnackbarComponen
     }
     return (
         <>
-            {
-                parkingData &&
-                    <>
-                        <ul className={styles.cardList}>
-                            {
-                                parkingData.parking_lots.map(parkingLot => (
-                                    <li >
-                                        <Card className={styles.sensorCard}>
-                                            <CardHeader title={
-                                                <div className={styles.cardHeaderContent}>
-                                                    <p>Parkplatz</p>
-                                                    <Avatar className={styles.cardHeaderAvatar}><span>{parkingLot.id}</span></Avatar>
-                                                </div>
-
-                                            } className={styles.cardHeader}>
-
-                                            </CardHeader>
-                                            <CardContent className={styles.cardContent}>
-                                                <div className={styles.availabilityContainer}>
-                                                    <p>Status</p>
-                                                    <div className={styles.availabilityIndicator} style={{backgroundColor: parkingLot.bookable? parkingLot.status? "orange" : "green" :"red"}}></div>
-                                                </div>
-                                                <p>Typ E-Ladesäule</p>
-                                            </CardContent>
-
-                                            <CardActions>
-                                                <Button size="small" onClick={() => clickParkingLot(parkingLot.id)}>Details</Button>
-                                            </CardActions>
-                                        </Card>
-                                    </li>
-                                ))
-
-                            }
-                        </ul>
-                        {
-                            showBookingWindow && selectedParkingLot.current &&
-                            <BookingForm snackbar={snackbar} parkingLotData={selectedParkingLot.current} setShowBookingWindow={setShowBookingWindow} userData={uData}/>
-                        }
-
-
-                    </>
-            }
+            {parkingData && (
+                <>
+                    <ul className={styles.cardList}>
+                        {parkingData.parking_lots.map((parkingLot) => (
+                            <li key={parkingLot.id}>
+                                <Card className={styles.sensorCard}>
+                                    <CardHeader
+                                        title={
+                                            <div className={styles.cardHeaderContent}>
+                                                <p>Parkplatz</p>
+                                                <Avatar className={styles.cardHeaderAvatar}>
+                                                    <span>{parkingLot.id}</span>
+                                                </Avatar>
+                                            </div>
+                                        }
+                                        className={styles.cardHeader}
+                                    />
+                                    <CardContent className={styles.cardContent}>
+                                        <div className={styles.availabilityContainer}>
+                                            <p>Status</p>
+                                            <div
+                                                className={styles.availabilityIndicator}
+                                                style={{
+                                                    backgroundColor: parkingLot.bookable
+                                                        ? parkingLot.status
+                                                            ? "orange"
+                                                            : "green"
+                                                        : "red",
+                                                }}
+                                            ></div>
+                                        </div>
+                                        <p>Typ E-Ladesäule</p>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button
+                                            size="small"
+                                            onClick={() => clickParkingLot(parkingLot.id)}
+                                        >
+                                            Details
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </li>
+                        ))}
+                    </ul>
+                    {showBookingWindow && selectedParkingLot.current && (
+                        <BookingForm
+                            snackbar={snackbar}
+                            parkingLotData={selectedParkingLot.current}
+                            setShowBookingWindow={setShowBookingWindow}
+                            userData={uData}
+                        />
+                    )}
+                </>
+            )}
         </>
-    )
+    );
+
 }
