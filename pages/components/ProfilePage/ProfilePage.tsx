@@ -8,7 +8,6 @@ import {ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/u
 export default function ({userData, snackbar}: {userData:User, snackbar:SnackbarComponent}):ReactElement {
     const [bookings,setBookings] = useState<Array<Booking>>()
     const [alignment, setAlignment] = useState('fb');
-
     const handleChange = (
         event: React.MouseEvent<HTMLElement>,
         newAlignment: string,
