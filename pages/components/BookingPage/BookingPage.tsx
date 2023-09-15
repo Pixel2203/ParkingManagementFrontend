@@ -8,45 +8,47 @@ import {
     User
 } from "@/utils/types";
 import {getBookingRecommendations} from "@/utils/RequestHandler";
-import RecommendDataDisplay from "@/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay";
+import RecommendDataDisplay, {
+    BookingDataDisplayData
+} from "@/pages/components/BookingPage/RecommendDataDisplay/BookingDataDisplay";
 import {getDateAsString, getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
 import {ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
 import TimeInput from "@/pages/components/ParkingLotInfo/TimeInput/TimeInput";
 
 export default function ({snackbar, userData} : {snackbar:SnackbarComponent, userData:User}):ReactElement {
-    const [recom, setRecom] = useState<Record<number, Array<RecommendationTicket>>>();
-    const [filters, setFilters] = useState<BookingFilterObject>();
+    const [bookingDataDisplayData,setBookingDataDisplayData] = useState<BookingDataDisplayData>()
+    const [time,setTime] = useState<string>(getTimeAsString(new Date()))
+
     const dateRef = useRef<HTMLInputElement>(null);
     const selectedDurationRef = useRef<HTMLSelectElement>(null);
+
+
+
+
     const handleRecommendClick = () => {
         if (dateRef.current && selectedDurationRef.current) {
             const date: Date = new Date(dateRef.current.value);
             const [hours, mins] = time.split(":");
-            if (date.getDate())
+            if (date.getDate()){
                 date.setHours(Number(hours), Number(mins))
-            setFilters({
-                dateFilter: {
-                    selectedDate: date
-                }
-            })
-            console.log(date)
-            getBookingRecommendations(date, Number(selectedDurationRef.current.value)).then(result => {
-                console.log(result)
-                if (!result) {
-                    snackbar.displaySnackbar(NO_SERVER_FOUND_ALERT)
-                    return;
-                }
-                if (!result.worked) {
-                    snackbar.displaySnackbar(ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT)
-                    return;
-                }
-                setRecom(result.tickets)
 
-            })
+                const daten:BookingDataDisplayData = {
+                    startDate: date,
+                    duration: Number(selectedDurationRef.current.value),
+                    filterData: {
+                        dateFilter: {
+                            selectedDate: date
+                        }
+                    }
+                }
+                console.log(daten)
+                setBookingDataDisplayData(daten)
+
+            }
+
         }
 
     }
-    const [time,setTime] = useState<string>(getTimeAsString(new Date()))
     const handleTimeChange = (e:BaseSyntheticEvent) => {
         if(!dateRef.current){
             return;
@@ -87,8 +89,8 @@ export default function ({snackbar, userData} : {snackbar:SnackbarComponent, use
             </select>
             <Button onClick={handleRecommendClick}>Recommend</Button>
             {
-                recom && dateRef.current && filters &&
-                <RecommendDataDisplay userData={userData} snackbar={snackbar} mydata={recom} filterData={filters}/>
+                bookingDataDisplayData &&
+                <RecommendDataDisplay userData={userData} snackbar={snackbar} data={bookingDataDisplayData}/>
             }
         </>
     )

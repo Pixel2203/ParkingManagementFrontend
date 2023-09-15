@@ -10,20 +10,27 @@ import {
 import {getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
 import styles from "./BookingDataDisplay.module.css"
 import ParkingLotInfo from "@/pages/components/ParkingLotInfo/ParkingLotInfo";
-import {ERROR_NO_DATA_ALERT} from "@/utils/fields";
-interface BookingDataDisplayProperties {
-    mydata:Record<number,Array<RecommendationTicket>>,
-    tableWidth?:number,
+import {ERROR_NO_DATA_ALERT, ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
+import {getBookingRecommendations} from "@/utils/RequestHandler";
+export type BookingDataDisplayData = {
+    startDate: Date,
+    duration: number,
     filterData:BookingFilterObject,
+}
+interface BookingDataDisplayProperties {
+    data: BookingDataDisplayData
+    tableWidth?:number,
+
     snackbar:SnackbarComponent,
     userData:User
 }
 
-export default function ({mydata,tableWidth,filterData, snackbar, userData} : BookingDataDisplayProperties):ReactElement {
+export default function ({data,tableWidth, snackbar, userData} : BookingDataDisplayProperties):ReactElement {
     const [displayData, setDisplayData] = useState<Record<number, Array<RecommendationTicket>>>()
     const [showBookingWindow,setShowBookingWindow] = useState<boolean>(false);
     const [parkingLotData,setParkingLotData] = useState<Sensordata>()
     const [config,setConfig] = useState<BookingHandlerConfig>();
+    const {filterData} = data;
     tableWidth = tableWidth ? tableWidth : 1200
     // Styling
     const balkenWidth = tableWidth ? tableWidth-50 : 800;
@@ -51,10 +58,9 @@ export default function ({mydata,tableWidth,filterData, snackbar, userData} : Bo
     lowestDate.setHours(0,0);
     // FILTER
 
+// mydata:Record<number,Array<RecommendationTicket>>,
 
-
-    const calculateBlockedTimes = (sensorId:number):Array<RecommendationTicket> => {
-        const availableTimes:Array<RecommendationTicket> = mydata[sensorId];
+    const calculateBlockedTimes = (availableTimes:Array<RecommendationTicket>):Array<RecommendationTicket> => {
         const blockers: Array<RecommendationTicket> = []
         for(let i = 0; i < availableTimes.length; i++){
             const isEarliestEntry = i==0;
@@ -87,22 +93,30 @@ export default function ({mydata,tableWidth,filterData, snackbar, userData} : Bo
         return blockers;
     }
     useEffect(() => {
-        console.log("NEU LADEN")
-        if(!mydata){
-            return
-        }
-        let blockDaten: Record<number,Array<RecommendationTicket>> = {};
-        const keyset = Object.keys(mydata);
-        for(let i = 0; i < keyset.length; i++){
-            const sensorId = Number(keyset[i]);
-            let blocks = calculateBlockedTimes(sensorId);
-            blocks.push(...mydata[sensorId])
-            blockDaten[sensorId] =  blocks;
-        }
+        getBookingRecommendations(data.startDate, data.duration).then(result => {
+            console.log(result)
+            if (!result) {
+                snackbar.displaySnackbar(NO_SERVER_FOUND_ALERT)
+                return;
+            }
+            if (!result.worked) {
+                snackbar.displaySnackbar(ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT)
+                return;
+            }
+            let blockDaten: Record<number,Array<RecommendationTicket>> = {};
+            const keyset = Object.keys(result.tickets);
+            for(let i = 0; i < keyset.length; i++){
+                const sensorId = Number(keyset[i]);
+                let blocks = calculateBlockedTimes(result.tickets[sensorId]);
+                blocks.push(...result.tickets[sensorId])
+                blockDaten[sensorId] =  blocks;
+            }
+            setDisplayData(blockDaten)
 
-        setDisplayData(blockDaten)
+        })
 
-    },[mydata, showBookingWindow])
+
+    },[showBookingWindow,data])
     const clickSection = (ticket:RecommendationTicket, sensorId:number) => {
         if(!displayData){
             snackbar.displaySnackbar(ERROR_NO_DATA_ALERT)
@@ -113,11 +127,14 @@ export default function ({mydata,tableWidth,filterData, snackbar, userData} : Bo
         }
         setConfig({
             timeConfig: {
-                startDateInMillis: ticket.startDate
+                startDate: new Date(ticket.startDate),
+                endDate: new Date(ticket.startDate + data.duration * 60 * 1000)
+
             },
             options: {
                 enableDatePicker: false,
-                allowPastTimes: false
+                allowPastTimes: false,
+                disableBookingHandler: false
             }
         })
         setParkingLotData(
@@ -130,6 +147,8 @@ export default function ({mydata,tableWidth,filterData, snackbar, userData} : Bo
         )
         setShowBookingWindow(true);
     }
+
+    console.log("RERENDER")
     return (
         <>
             <div className={styles.contentWrapper}>

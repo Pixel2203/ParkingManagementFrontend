@@ -80,7 +80,7 @@ export default function ({handlerDTO, config}: {handlerDTO:BookingHandlerDTO, co
     }
     const getDefaultDate = ():Date => {
         if(config && config.timeConfig){
-            return new Date(config.timeConfig.startDateInMillis)
+            return config.timeConfig.startDate
         }
         return new Date();
     }
@@ -88,8 +88,8 @@ export default function ({handlerDTO, config}: {handlerDTO:BookingHandlerDTO, co
     if(config){
         if(config.timeConfig){
             const timeValue = new Date();
-            if(timeValue.getTime() < config.timeConfig.startDateInMillis || config.options?.allowPastTimes){
-                TimeInputComponent.updatedValue = getTimeAsString(new Date(config.timeConfig.startDateInMillis));
+            if(timeValue.getTime() < config.timeConfig.startDate.getTime() || config.options?.allowPastTimes){
+                TimeInputComponent.updatedValue = getTimeAsString(config.timeConfig.startDate);
             }
         }
         if(config.options){

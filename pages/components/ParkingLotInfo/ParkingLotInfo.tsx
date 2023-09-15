@@ -29,6 +29,10 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
     }
 
     useEffect(() => {
+        if(config && config.timeConfig) {
+            setCurrentDateObject(config.timeConfig.startDate)
+            setFutureDateObject(config.timeConfig.endDate)
+        }
         onLoadTodaysBookings();
     }, [currentDateObject]);
     const clickCancel = async () => {
@@ -91,9 +95,14 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
                         </BookingAccordion>
 
 
-                        <BookingAccordion  title={"Buchung"} className={styles.accordion}>
-                            <BookingHandler handlerDTO={bookingHandlerDTO} config={config}/>
-                        </BookingAccordion>
+
+                        {
+                            (!config || !config.timeConfig ||!config.options || !config.options.disableBookingHandler) &&
+                            <BookingAccordion  title={"Buchung"} className={styles.accordion}>
+                                <BookingHandler handlerDTO={bookingHandlerDTO} config={config}/>
+                            </BookingAccordion>
+                        }
+
 
 
                         {

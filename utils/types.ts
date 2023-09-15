@@ -105,11 +105,13 @@ export interface BookingHandlerDTO {
 }
 export interface BookingHandlerConfig {
     timeConfig?: {
-        startDateInMillis: number,
+        startDate: Date,
+        endDate: Date
     },
     options? : {
         enableDatePicker: boolean
         allowPastTimes: boolean
+        disableBookingHandler: boolean
     }
 }
 export interface TimeInputComponent  {
