@@ -13,7 +13,7 @@ import BookingPage from "@/pages/components/BookingPage/BookingPage";
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function () {
     const [userData,setUserData] = useState<User | null>(null)
     const [open,setOpen] = useState<boolean>(false);
     const [snackbarContent, setSnackbarContent] = useState<ReactElement>(<></>);

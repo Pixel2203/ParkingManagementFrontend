@@ -111,29 +111,24 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: Us
     return (
         <>
             <div className={styles.contentWrapper}>
-                <ul>
-                    <li>
-                        <TextField inputRef={preNameInputRef} label={"Vorname"} className={styles.inputField}/>
-                         <TextField inputRef={nameInputRef} label={"Nachname"} className={styles.inputField}/>
-                        <Select defaultValue={"AG"} inputRef={companySelectRef} className={styles.inputField}>
-                            <MenuItem value={"AG"}>AG</MenuItem>
-                            <MenuItem value={"Systemhaus"}>Systemhaus</MenuItem>
-                        </Select>
-                    </li>
-                    <li>
-                        <TextField inputRef={emailInputRef} label={"Email"} className={styles.inputField}/>
-                        <TextField inputRef={telefonInputRef} label={"Telefon"} className={styles.inputField}/>
-                    </li>
-                    <li>
-                        <TextField inputRef={plateInputRef} label={"Kennzeichen"} className={styles.inputField}/>
-                         <TextField inputRef={brandInputRef} label={"Marke"} className={styles.inputField}/>
-                         <TextField inputRef={modelInputRef} label={"Modell (Optional)"} className={styles.inputField}/>
-                    </li>
-
-
-                </ul>
-                <Button variant={"contained"} onClick={submitRequest}>Absenden</Button>
-                <Button variant={"outlined"} onClick={devLogin}>Login DEV <LogoDev/></Button>
+                <div className={styles.innerContainer}>
+                    <div className={styles.content}>
+                        <h2 className={styles.heading}>Anmelden</h2>
+                            <TextField inputRef={preNameInputRef}   label={"Vorname"}           className={styles.inputField + " " + styles.prename} variant={"standard"}       required={true}/>
+                            <TextField inputRef={nameInputRef}      label={"Nachname"}          className={styles.inputField + " " + styles.name} variant={"standard"}          required={true}/>
+                            <Select    inputRef={companySelectRef}  label={"Gesellschaft"}      className={styles.inputField + " " + styles.company}variant={"standard"}        required={true} defaultValue={"AG"} >
+                                <MenuItem value={"AG"}>AG</MenuItem>
+                                <MenuItem value={"Systemhaus"}>Systemhaus</MenuItem>
+                            </Select>
+                            <TextField inputRef={emailInputRef}     label={"Email"}             className={styles.inputField + " " + styles.email} variant={"standard"}         required={true}/>
+                            <TextField inputRef={telefonInputRef}   label={"Telefon"}           className={styles.inputField  + " " + styles.telephone} variant={"standard"}    required={true}/>
+                            <TextField inputRef={plateInputRef}     label={"Kennzeichen"}       className={styles.inputField  + " " + styles.plate} variant={"standard"}        required={true}/>
+                            <TextField inputRef={brandInputRef}     label={"Marke"}             className={styles.inputField + " " + styles.brand} variant={"standard"}         required={true}/>
+                            <TextField inputRef={modelInputRef}     label={"Modell"} className={styles.inputField + " " + styles.model} variant={"standard"}/>
+                        <Button variant={"contained"} onClick={submitRequest} className={styles.login}>Anmelden</Button>
+                        <Button variant={"outlined"} onClick={devLogin} className={styles.loginDev}>Login DEV <LogoDev/></Button>
+                    </div>
+                </div>
             </div>
 
         </>

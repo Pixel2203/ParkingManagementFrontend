@@ -1,12 +1,84 @@
 .contentWrapper{
+    display: flex;
+    align-item: center;
+    justify-content: center;
+    margin-top: 50px;
 
 }
-.contentWrapper ul {
-    list-style-type: none;
+.innerContainer {
+    -webkit-box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
+    -moz-box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
+    box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
+    border-radius: 10px;
 }
-.contentWrapper ul li {
-    margin: 20px 0;
+.content {
+    padding: 50px;
+    display: grid;
+    grid-template-areas:
+        "heading heading"
+        "prename name"
+        "telephone email"
+        "company company"
+        "nix nix"
+        "plate brand"
+        "model filler"
+        "login loginDev";
+    grid-gap: 30px;
+    grid-template-rows: 1fr 1fr 1fr 1fr .01fr 1fr 1fr 1fr;
+    grid-template-columns: 220px 220px;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
-.inputField {
-    margin: 10px;
+
+
+
+
+
+
+
+.login {
+    grid-area: login;
+}
+.loginDev {
+    grid-area: loginDev;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.heading {
+    grid-area: heading;
+}
+.prename {
+    grid-area: prename;
+}
+.name {
+    grid-area: name;
+}
+.telephone{
+    grid-area: telephone;
+}
+.email {
+    grid-area: email;
+}
+.company{
+    grid-area: company;
+}
+.plate {
+    grid-area: plate;
+}
+.model {
+    grid-area: model;
+}
+.brand {
+    grid-area: brand;
 }
