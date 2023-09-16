@@ -29,10 +29,16 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
     }
 
     useEffect(() => {
+        /*
+        console.log("ÄNDERUNG AUF")
+        console.log(currentDateObject)
         if(config && config.timeConfig) {
             setCurrentDateObject(config.timeConfig.startDate)
             setFutureDateObject(config.timeConfig.endDate)
         }
+
+         */
+
         onLoadTodaysBookings();
     }, [currentDateObject]);
     const clickCancel = async () => {
@@ -106,7 +112,7 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
 
 
                         {
-                            bookingList &&
+                            bookingList && ((config && config.options && !config.options.disableSchedule) || (!config || !config.options)) &&
                             <BookingAccordion className={styles.accordion} title={"Zeitplan - " + getDateAsString(currentDateObject)}>
                             <section className={styles.dataDisplay}>
                                 <BookingList bookingList={bookingList}/>

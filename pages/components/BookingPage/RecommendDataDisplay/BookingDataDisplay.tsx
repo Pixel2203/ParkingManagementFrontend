@@ -134,7 +134,8 @@ export default function ({data,tableWidth, snackbar, userData} : BookingDataDisp
             options: {
                 enableDatePicker: false,
                 allowPastTimes: false,
-                disableBookingHandler: false
+                disableBookingHandler: false,
+                disableSchedule: true
             }
         })
         setParkingLotData(

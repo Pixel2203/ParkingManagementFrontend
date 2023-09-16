@@ -111,7 +111,8 @@ export interface BookingHandlerConfig {
     options? : {
         enableDatePicker: boolean
         allowPastTimes: boolean
-        disableBookingHandler: boolean
+        disableBookingHandler: boolean,
+        disableSchedule: boolean
     }
 }
 export interface TimeInputComponent  {

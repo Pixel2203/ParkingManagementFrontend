@@ -54,11 +54,13 @@ export default function ({handlerDTO, config}: {handlerDTO:BookingHandlerDTO, co
                 beginTime.setHours(Number(inputHours));
                 beginTime.setMinutes(Number(inputMinutes));
             }
+            console.log("ZEITÄNDERUNG 1")
+            console.log(beginTime)
             const endTime = getFutureDate(beginTime,futureMin)
             setCurrentDateObject(beginTime)
             setFutureDateObject(endTime);
         }else {
-
+            console.log("ZEITÄNDERUNG 2")
             setCurrentDateObject(currentDate)
             const endTime = getFutureDate(currentDate,futureMin);
             setFutureDateObject(endTime)
