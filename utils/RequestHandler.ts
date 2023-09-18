@@ -48,7 +48,7 @@ export function getBookingHistoryByPlate(plate:string):Promise<FullBookingListRe
     });
 }
 export function getBookingRecommendations(startDate: Date, duration:number):Promise<FullParkingRecommendationResponse | undefined> {
-    return fetch("http://localhost:8080/recommendations?startDate=" + startDate.getTime() + "&duration=" + duration).then(res => res.json()).catch(reason => {
+    return fetch("http://localhost:8080/datadisplay?startDate=" + startDate.getTime() + "&duration=" + duration).then(res => res.json()).catch(reason => {
         return undefined;
     });
 }

@@ -20,7 +20,6 @@ export default function ({userData, setUserData,setContentSite} : {userData:User
         <header className={styles.header}>
             <div className={styles.topBar}>
                 <div className={styles.userContainer}>
-
                         {
 
                             userData &&
@@ -34,13 +33,13 @@ export default function ({userData, setUserData,setContentSite} : {userData:User
                         <UserDropDown setUserData={setUserData} setDisplayDropDown={setDisplayDropDown} setContentSite={updateContentSiteFromDropDown} userData={userData}/>
                     }
                 </div>
-
+                <h1>Parkplatz Management</h1>
             </div>
 
             <nav>
                 <ul>
-                    <li onClick={() => setContentSite("ppl")}>Parkplatzübersicht</li>
-                    <li onClick={() => setContentSite("br")}>Empfehlung</li>
+                    <li onClick={() => setContentSite("ppl")}><span>Parkplatzübersicht</span></li>
+                    <li onClick={() => setContentSite("br")}><span>Empfehlung</span></li>
                     <li>Hilfe</li>
                 </ul>
             </nav>

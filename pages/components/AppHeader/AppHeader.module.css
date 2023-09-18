@@ -1,8 +1,9 @@
 .header {
     height: 150px;
-    background-color: #93B1A6;
-
-
+    background-color: #58c09b;
+    border-radius: 0px 0px 40px 40px;
+    box-shadow: 5px 5px 10px 0 rgba(45, 42, 42, 0.47);
+    font-family: "Roboto" , sans-serif;
 }
 .header nav, .topBar{
     width: 100%;
@@ -13,11 +14,17 @@
 .topBar {
     height: 50px;
 }
+.topBar h1 {
+    color: white;
+    position: relative;
+    top: 15px;
+    left:50px;
+}
 
 
 .header nav ul{
     list-style-type: none;
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
 }
@@ -25,7 +32,19 @@
     background-color: #5C8374;
     padding: 5px;
     color: snow;;
-    border-radius: 7px;
+    border-radius: 40px;
+    width: 150px;
+    text-align: center;
+    height: 40px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.header nav ul li:hover {
+    background-color: black;
+}
+.header nav ul li span {
 }
 .userContainer {
     margin-top: 20px;
