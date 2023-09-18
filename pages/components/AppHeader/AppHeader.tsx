@@ -8,13 +8,27 @@ export default function ({userData, setUserData,setContentSite} : {userData:User
     const updateContentSiteFromDropDown = (site: string) => {
         setContentSite(site);
     }
+    const getInitials = (prename: string, name:string):string => {
+        if(prename.length <= 0 || name.length <= 0){
+            return ""
+        }
+        const fc = prename.at(0) as string;
+        const lc = name.at(0) as string;
+        return (fc+lc).toUpperCase();
+    }
     return (
         <header className={styles.header}>
             <div className={styles.topBar}>
                 <div className={styles.userContainer}>
-                    <Badge badgeContent={4} color={"primary"} className={styles.badgeContainer} onClick={() => setDisplayDropDown(!displayDropDown)}>
-                        <Avatar>MK</Avatar>
-                    </Badge>
+
+                        {
+
+                            userData &&
+                            <Badge badgeContent={4} color={"primary"} className={styles.badgeContainer} onClick={() => setDisplayDropDown(!displayDropDown)}>
+                                <Avatar>{getInitials(userData.prename, userData.name)}</Avatar>
+                            </Badge>
+                        }
+
                     {
                         displayDropDown && userData &&
                         <UserDropDown setUserData={setUserData} setDisplayDropDown={setDisplayDropDown} setContentSite={updateContentSiteFromDropDown} userData={userData}/>

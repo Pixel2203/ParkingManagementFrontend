@@ -31,6 +31,7 @@ export default function ({data,tableWidth, snackbar, userData} : BookingDataDisp
     const [parkingLotData,setParkingLotData] = useState<Sensordata>()
     const [config,setConfig] = useState<BookingHandlerConfig>();
     const {filterData} = data;
+    const hours = Array.from(Array(24).keys())
     tableWidth = tableWidth ? tableWidth : 1200
     // Styling
     const balkenWidth = tableWidth ? tableWidth-50 : 800;
@@ -154,61 +155,45 @@ export default function ({data,tableWidth, snackbar, userData} : BookingDataDisp
         <>
             <div className={styles.contentWrapper}>
                 <table className={styles.dataTable} style={tableProperties}>
-                    <tr>
-                        <th style={tableMetadataProperties}>ID</th>
-                        <th style={timeDisplay}>00:00</th>
-                        <th style={timeDisplay}>01:00</th>
-                        <th style={timeDisplay}>02:00</th>
-                        <th style={timeDisplay}>03:00</th>
-                        <th style={timeDisplay}>04:00</th>
-                        <th style={timeDisplay}>05:00</th>
-                        <th style={timeDisplay}>06:00</th>
-                        <th style={timeDisplay}>07:00</th>
-                        <th style={timeDisplay}>08:00</th>
-                        <th style={timeDisplay}>09:00</th>
-                        <th style={timeDisplay}>10:00</th>
-                        <th style={timeDisplay}>11:00</th>
-                        <th style={timeDisplay}>12:00</th>
-                        <th style={timeDisplay}>13:00</th>
-                        <th style={timeDisplay}>14:00</th>
-                        <th style={timeDisplay}>15:00</th>
-                        <th style={timeDisplay}>16:00</th>
-                        <th style={timeDisplay}>17:00</th>
-                        <th style={timeDisplay}>18:00</th>
-                        <th style={timeDisplay}>19:00</th>
-                        <th style={timeDisplay}>20:00</th>
-                        <th style={timeDisplay}>21:00</th>
-                        <th style={timeDisplay}>22:00</th>
-                        <th style={timeDisplay}>23:00</th>
-                    </tr>
-
-
-
-                { displayData && 1==1 &&
-                    Object.keys(displayData).map(key => (
+                    <thead>
                         <tr>
-                            <td style={tableMetadataProperties}>{key}</td>
-                            <td colSpan={24}>
-                                <div className={styles.dataBar} style={{width: balkenWidth + "px"}}>
-                                    {
-                                        displayData[Number(key)].map(ticket => (
-                                            <>
-                                                <section style={{
-                                                    width: (ticket.endDate - ticket.startDate)/1000/60 / 2 * minuteWidth,
-                                                    marginLeft: (ticket.startDate - lowestDate.getTime()) / 1000/ 60 / 2 * minuteWidth,
-                                                    background: ticket.bookingId==9999? "red" : "#6beb34"
-                                                }} onClick={() => clickSection(ticket, Number(key))}>
-
-                                                </section>
-                                            </>
-
-                                        ))
-                                    }
-                                </div>
-                            </td>
+                            <th style={tableMetadataProperties}>ID</th>
+                            {
+                                hours.map(hour => (
+                                    <th style={timeDisplay} key={hour}>{`${hour}:00`}</th>
+                                ))
+                            }
                         </tr>
-                    ))
-                }
+                    </thead>
+                    <tbody>
+                        { displayData && 1==1 &&
+                            Object.keys(displayData).map(key => (
+                                <tr key={key}>
+                                    <td style={tableMetadataProperties}>{key}</td>
+                                    <td colSpan={24}>
+                                        <div className={styles.dataBar} style={{width: balkenWidth + "px"}}>
+                                            {
+                                                displayData[Number(key)].map(ticket => (
+                                                    <section key={key + ticket.startDate} style={{
+                                                        width: (ticket.endDate - ticket.startDate)/1000/60 / 2 * minuteWidth,
+                                                        marginLeft: (ticket.startDate - lowestDate.getTime()) / 1000/ 60 / 2 * minuteWidth,
+                                                        background: ticket.bookingId==9999? "red" : "#6beb34"
+                                                    }} onClick={() => clickSection(ticket, Number(key))}>
+
+                                                    </section>
+                                                ))
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+
+
+
+
+
 
 
                 </table>

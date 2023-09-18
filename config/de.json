@@ -4,5 +4,6 @@
   "ERROR_NO_DATA": "Konnte Daten nicht laden!",
   "SUCCESS_LOGGED_IN": "Erfolgreich angemeldet!",
   "ERROR_ACCOUNT_SUSPENDED": "Dieser Account wurde gesperrt!",
-  "ERROR_PROCESSING_DATA": "Daten konnten nicht verarbeitet werden"
+  "ERROR_PROCESSING_DATA": "Daten konnten nicht verarbeitet werden",
+  "ERROR_FUTURE_TOO_FAR": "Der gewählte Zeitraum entspricht nicht den Richtlinien!"
 }

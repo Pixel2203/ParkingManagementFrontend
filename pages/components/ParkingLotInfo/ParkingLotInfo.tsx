@@ -16,7 +16,8 @@ import BookingList from "@/pages/components/ParkingLotInfo/BookingList/BookingLi
 import BookingAccordion from "@/pages/components/Accordion/Accordion";
 import BookingHandler from "@/pages/components/ParkingLotInfo/BookingHandler/BookingHandler";
 import {Clear, PlaylistAdd} from "@mui/icons-material";
-import {NO_SERVER_FOUND_ALERT} from "@/utils/fields";
+import {ERROR_FUTURE_TOO_FAR_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
+import Configuration from "@/config/config.json"
 export default function ({parkingLotData,setShowBookingWindow,userData,snackbar, config} : {parkingLotData: Sensordata,setShowBookingWindow: (show: boolean) => void , userData:User,snackbar:SnackbarComponent, config?:BookingHandlerConfig }):ReactElement {
     const [bookingList, setBookingList] = useState<Array<Booking>>();
     const [currentDateObject,setCurrentDateObject] = useState<Date>();
@@ -48,12 +49,24 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
         if(!futureDateObject || !currentDateObject){
             return;
         }
-
-        sendBookingRequest(currentDateObject,futureDateObject,userData,parkingLotData.id).then((result: FullBookingResponse) => {
-            snackbar.displaySnackbar(<Alert severity={result.worked ? "success" : "error"}>{result.message}</Alert>)
-            if(result.worked){
-                setShowBookingWindow(false);
+        // Calculate Difference so you cant book 10 years in the future
+        let differenceInHours = futureDateObject.getTime() - new Date().getTime()
+        differenceInHours = differenceInHours / 1000/60/60;
+        if(differenceInHours > Configuration.maxTimeAheadInHours ){
+            snackbar.displaySnackbar(ERROR_FUTURE_TOO_FAR_ALERT);
+            return;
+        }
+        sendBookingRequest(currentDateObject,futureDateObject,userData,parkingLotData.id).then((result: FullBookingResponse | undefined) => {
+            if(!result){
+                snackbar.displaySnackbar(NO_SERVER_FOUND_ALERT);
+                return;
             }
+            if(!result.worked){
+                snackbar.displaySnackbar(<Alert severity={"error"}>{result.message}</Alert>)
+                return;
+            }
+            snackbar.displaySnackbar(<Alert severity={result.worked ? "success" : "error"}>{result.message}</Alert>)
+            setShowBookingWindow(false);
         })
     }
 
