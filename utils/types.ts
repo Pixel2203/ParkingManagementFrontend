@@ -14,16 +14,16 @@ type Schedule = {
     plate:string
 }
 export type User = {
-    id?: number
-    prename: string,
-    name: string,
-    plate: string,
-    brand: string,
-    model?: string | undefined,
-    company: string,
-    email: string,
-    telephone: string,
-    penalties?: number
+    _id?: number
+    _prename: string,
+    _name: string,
+    _plate: string,
+    _brand: string,
+    _model?: string | undefined,
+    _company: string,
+    _email: string,
+    _telephone: string,
+    _penalties?: number
 }
 export type Sensordata = {
     id: number,

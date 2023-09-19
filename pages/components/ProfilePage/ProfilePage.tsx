@@ -16,7 +16,7 @@ export default function ({userData, snackbar}: {userData:User, snackbar:Snackbar
     };
 
     const requestFutureBookings = () => {
-        getFutureBookingsByPlate(userData.plate).then(result => {
+        getFutureBookingsByPlate(userData._plate).then(result => {
             if(!result){
                 snackbar.displaySnackbar(
                     NO_SERVER_FOUND_ALERT
@@ -29,7 +29,7 @@ export default function ({userData, snackbar}: {userData:User, snackbar:Snackbar
         })
     }
     const requestBookingHistory = () => {
-        getBookingHistoryByPlate(userData.plate).then(result => {
+        getBookingHistoryByPlate(userData._plate).then(result => {
             if(!result){
                 snackbar.displaySnackbar(
                     NO_SERVER_FOUND_ALERT
@@ -50,13 +50,13 @@ export default function ({userData, snackbar}: {userData:User, snackbar:Snackbar
                     <h2>Persönliche Daten</h2>
                     <ul>
                         <li>
-                            <p>Email</p><span>{userData.email}</span>
+                            <p>Email</p><span>{userData._email}</span>
                         </li>
                         <li>
-                            <p>Telefon</p><span>{userData.telephone}</span>
+                            <p>Telefon</p><span>{userData._telephone}</span>
                         </li>
                         <li>
-                            <p>Gesellschaft</p><span>{userData.company}</span>
+                            <p>Gesellschaft</p><span>{userData._company}</span>
                         </li>
 
                     </ul>
@@ -64,18 +64,18 @@ export default function ({userData, snackbar}: {userData:User, snackbar:Snackbar
                     <h2>Fahrzeugdaten</h2>
                     <ul className={styles.vehicleData}>
                         <li>
-                            <p>Marke</p><span>{userData.brand}</span>
+                            <p>Marke</p><span>{userData._brand}</span>
                         </li>
 
                         {
-                            userData.model &&
+                            userData._model &&
                             <li>
-                                <p>Modell</p><span>{userData.model}</span>
+                                <p>Modell</p><span>{userData._model}</span>
                             </li>
                         }
 
                         <li>
-                            <p>Kennzeichen</p><span>{userData.plate}</span>
+                            <p>Kennzeichen</p><span>{userData._plate}</span>
                         </li>
                     </ul>
                 </section>

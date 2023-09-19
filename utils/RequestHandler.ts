@@ -53,6 +53,7 @@ export function getBookingRecommendations(startDate: Date, duration:number):Prom
     });
 }
 export function checkUserService(user:User):Promise<FullUserResponse | undefined> {
+    console.log("SENDE DATEN")
     const request:UserRequest = {
         user: user
     }

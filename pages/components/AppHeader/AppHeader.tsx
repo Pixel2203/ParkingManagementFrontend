@@ -24,7 +24,7 @@ export default function ({userData, setUserData,setContentSite} : {userData:User
 
                             userData &&
                             <Badge badgeContent={4} color={"primary"} className={styles.badgeContainer} onClick={() => setDisplayDropDown(!displayDropDown)}>
-                                <Avatar>{getInitials(userData.prename, userData.name)}</Avatar>
+                                <Avatar>{getInitials(userData._prename, userData._name)}</Avatar>
                             </Badge>
                         }
 

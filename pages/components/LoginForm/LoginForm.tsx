@@ -20,6 +20,7 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: Us
 
     const requestUserService = (user:User) => {
         RequestHandler.checkUserService(user).then(res => {
+            console.log(res)
             if(!res){
                 snackbarComponent.displaySnackbar(NO_SERVER_FOUND_ALERT)
                 return;
@@ -29,12 +30,12 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: Us
                 console.log(res);
                 return;
             }
-            if(res.user.id){
-                if(!res.user.penalties && res.user.penalties != 0){
+            if(res.user._id){
+                if(!res.user._penalties && res.user._penalties != 0){
                     console.log("KEINE PENALTIES GEFUNDEN")
                     return;
                 }
-                const penalties:number = res.user.penalties;
+                const penalties:number = res.user._penalties;
                 if(penalties < 2){
                     setUserData(res.user);
                     snackbarComponent.displaySnackbar(SUCCESS_LOGGED_IN_ALERT)
@@ -52,14 +53,14 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: Us
                 return false;
             }
             const user:User = {
-                brand: brandInputRef.current.value,
-                email: emailInputRef.current.value,
-                name: nameInputRef.current.value,
-                plate: plateInputRef.current.value,
-                company: companySelectRef.current.value,
-                prename: preNameInputRef.current.value,
-                telephone: telefonInputRef.current.value,
-                model: modelInputRef.current.value
+                _brand: brandInputRef.current.value,
+                _email: emailInputRef.current.value,
+                _name: nameInputRef.current.value,
+                _plate: plateInputRef.current.value,
+                _company: companySelectRef.current.value,
+                _prename: preNameInputRef.current.value,
+                _telephone: telefonInputRef.current.value,
+                _model: modelInputRef.current.value
             }
             requestUserService(user)
         }else {
@@ -94,13 +95,13 @@ export default function ({setUserData,snackbarComponent}: {setUserData:(data: Us
     }
     const devLogin = () => {
         const user:User = {
-            telephone: "+49 152 342 949 35",
-            prename: "Marvin",
-            name: "Kaiser",
-            plate: "HDHM227",
-            brand: "VW",
-            email: "marvinkaiser20@gmail.com",
-            company: "Bechtle AG"
+            _telephone: "+49 152 342 949 35",
+            _prename: "Marvin",
+            _name: "Kaiser",
+            _plate: "HDHM227",
+            _brand: "VW",
+            _email: "marvinkaiser20@gmail.com",
+            _company: "Bechtle AG"
 
         }
         requestUserService(user);
