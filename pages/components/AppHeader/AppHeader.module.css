@@ -30,20 +30,23 @@
     justify-content: space-evenly;
 }
 .header nav ul li {
-    background-color: #5C8374;
+    background-color: #ffffff;
     padding: 5px;
-    color: snow;;
-    border-radius: 40px;
+    color: black;
+    border-radius: 10px 10px 0 0;
+
     width: 150px;
     text-align: center;
     height: 40px;
     display:flex;
     justify-content: center;
     align-items: center;
-
+    margin-top: 30px;
+    transition: all 0.3s;
+    cursor: pointer;
 }
 .header nav ul li:hover {
-    background-color: black;
+    box-shadow: inset 5px 5px 5px 0px rgba(126, 118, 118, 0.42);
 }
 .header nav ul li span {
 }
