@@ -9,7 +9,7 @@ import {Snackbar} from "@mui/material";
 import AppHeader from "@/pages/components/AppHeader/AppHeader";
 import ProfilePage from "@/pages/components/ProfilePage/ProfilePage";
 import styles from "@/styles/Home.module.css";
-import BookingPage from "@/pages/components/BookingPage/BookingPage";
+import BookingPage from "@/pages/components/SchedulePage/BookingPage";
 
 const inter = Inter({ subsets: ['latin'] })
 

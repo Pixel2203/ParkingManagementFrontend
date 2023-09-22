@@ -3,9 +3,10 @@ import styles from "@/pages/components/ParkingLotInfo/BookingHandler/BookingHand
 import {getDateAsString, getFutureDate, getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
 import TimeInput from "@/pages/components/ParkingLotInfo/TimeInput/TimeInput";
 import {BookingHandlerDTO, BookingHandlerConfig, TimeInputComponent} from "@/utils/types";
+import {Alert, Button} from "@mui/material";
 
 export default function ({handlerDTO, config}: {handlerDTO:BookingHandlerDTO, config?:BookingHandlerConfig}):ReactElement {
-    const {setFutureDateObject,setCurrentDateObject,currentDateObject,futureDateObject} = handlerDTO;
+    const {setFutureDateObject,setCurrentDateObject,currentDateObject,futureDateObject,setShowUnallowed} = handlerDTO;
     const [futureMin,setFutureMin] = useState(30);
     const datepickerRef:MutableRefObject<HTMLInputElement> = useRef<HTMLInputElement>() as any;
     const [startTime , setStartTime] = useState<string>();
@@ -14,6 +15,7 @@ export default function ({handlerDTO, config}: {handlerDTO:BookingHandlerDTO, co
         updateTimeAndDateInput();
     }, [futureMin,startTime] )
     const updateTimeAndDateInput = () => {
+        setShowUnallowed(false);
         const currentDate = new Date();
         if(datepickerRef.current && startTime){
 
@@ -31,6 +33,7 @@ export default function ({handlerDTO, config}: {handlerDTO:BookingHandlerDTO, co
             // Add hours to Date
             const selectedDateIsToday:boolean =  dateTodayString == dateSelectedString;
             if(userInputDate.getTime() < currentDate.getTime() && !selectedDateIsToday){
+                setShowUnallowed(true);
                 return;
             }
 
@@ -42,25 +45,24 @@ export default function ({handlerDTO, config}: {handlerDTO:BookingHandlerDTO, co
                 const currentSum = currentHour * 60 + currentMinutes;
 
                 const inputSum = Number(inputHours) * 60 + Number(inputMinutes);
-                if(inputSum > currentSum){
+                if(inputSum >= currentSum){
                     beginTime = userInputDate;
                     beginTime.setHours(Number(inputHours));
                     beginTime.setMinutes(Number(inputMinutes));
                 }else{
                     beginTime = currentDate;
+                    setShowUnallowed(true)
+
                 }
             }else {
                 beginTime = userInputDate;
                 beginTime.setHours(Number(inputHours));
                 beginTime.setMinutes(Number(inputMinutes));
             }
-            console.log("ZEITÄNDERUNG 1")
-            console.log(beginTime)
             const endTime = getFutureDate(beginTime,futureMin)
             setCurrentDateObject(beginTime)
             setFutureDateObject(endTime);
         }else {
-            console.log("ZEITÄNDERUNG 2")
             setCurrentDateObject(currentDate)
             const endTime = getFutureDate(currentDate,futureMin);
             setFutureDateObject(endTime)

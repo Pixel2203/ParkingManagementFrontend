@@ -27,3 +27,7 @@
     padding: 7px;
     border-radius: 20px;
 }
+
+.inputContainer section {
+    margin-top: 10px;
+}

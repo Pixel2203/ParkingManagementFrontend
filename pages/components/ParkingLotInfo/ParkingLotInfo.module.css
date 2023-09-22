@@ -107,3 +107,9 @@
     color: #72A1E5;
     font-size: 20pt;
 }
+.alertBox div {
+    align-items: center;
+}
+.alertBox {
+
+}

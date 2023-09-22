@@ -22,11 +22,13 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
     const [bookingList, setBookingList] = useState<Array<Booking>>();
     const [currentDateObject,setCurrentDateObject] = useState<Date>();
     const [futureDateObject,setFutureDateObject] = useState<Date>();
+    const [showUnallowed, setShowUnallowed] = useState<boolean>(false);
     const bookingHandlerDTO:BookingHandlerDTO = {
         setCurrentDateObject: setCurrentDateObject,
         setFutureDateObject: setFutureDateObject,
         futureDateObject: futureDateObject,
-        currentDateObject: currentDateObject
+        currentDateObject: currentDateObject,
+        setShowUnallowed: setShowUnallowed
     }
 
     useEffect(() => {
@@ -135,7 +137,15 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
 
 
                     </section>
-
+                    {
+                        showUnallowed &&
+                        <section>
+                            <Alert severity={"error"} className={styles.alertBox}>
+                                    <span>Buchung zu diesem Zeitpunkt nicht erlaubt!</span>
+                                    <Button>Empfehlung</Button>
+                            </Alert>
+                        </section>
+                    }
                 </div>
                 <div className={styles.footer}>
                     <Button variant={"contained"} onClick={clickBook} disabled={parkingLotData.status} className={styles.infoButton}>
