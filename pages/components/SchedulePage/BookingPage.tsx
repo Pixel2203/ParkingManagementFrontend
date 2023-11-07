@@ -7,10 +7,10 @@ import {
     TimeInputComponent,
     User
 } from "@/utils/types";
-import {getBookingRecommendations} from "@/utils/RequestHandler";
+import {getScheduleData} from "@/utils/RequestHandler";
 import RecommendDataDisplay, {
     BookingDataDisplayData
-} from "@/pages/components/SchedulePage/RecommendDataDisplay/BookingDataDisplay";
+} from "@/pages/components/SchedulePage/Schedule/BookingDataDisplay";
 import {getDateAsString, getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
 import {ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
 import TimeInput from "@/pages/components/ParkingLotInfo/TimeInput/TimeInput";

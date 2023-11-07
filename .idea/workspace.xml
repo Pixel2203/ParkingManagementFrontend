@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfb44da4-ab49-48af-8579-519928cb962d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/RecommendationDisplay/Recommendation.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/RecommendationDisplay/Recommendation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/AppHeader/AppHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/AppHeader/UserDropDown/UserDropDown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/AppHeader/UserDropDown/UserDropDown.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/LoginForm/LoginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ProfilePage/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/ParkingLotList/ParkingLotList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/SchedulePage/BookingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/SchedulePage/BookingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/SchedulePage/RecommendDataDisplay/BookingDataDisplay.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/SchedulePage/Schedule/BookingDataDisplay.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/components/SchedulePage/RecommendDataDisplay/BookingDataDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/components/SchedulePage/Schedule/BookingDataDisplay.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/RequestHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/RequestHandler.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/types.ts" afterDir="false" />
     </list>
@@ -28,9 +27,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
         <option value="CSS File" />
-        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -61,15 +60,16 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/pages/components/LoginForm&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/ParkingManagementFrontend&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.externalResources&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/marvin.kaiser/Desktop/Projektarbeit-Lernwerkstatt/Frontend/webapp/node_modules/typescript/lib&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.file-colors&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;F:\\ParkingManagementFrontend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -120,6 +120,11 @@
       <workItem from="1694612057878" duration="9145000" />
       <workItem from="1694694687858" duration="257000" />
       <workItem from="1694712546690" duration="1186000" />
+      <workItem from="1695394250338" duration="201000" />
+      <workItem from="1695394459055" duration="5875000" />
+      <workItem from="1695407273902" duration="647000" />
+      <workItem from="1695544046918" duration="737000" />
+      <workItem from="1699299138958" duration="2266000" />
     </task>
     <servers />
   </component>
@@ -147,6 +152,11 @@
           <url>file://$PROJECT_DIR$/pages/components/ParkingLotInfo/BookingHandler/BookingHandler.tsx</url>
           <line>91</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/pages/components/ParkingLotInfo/ParkingLotInfo.tsx</url>
+          <line>105</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

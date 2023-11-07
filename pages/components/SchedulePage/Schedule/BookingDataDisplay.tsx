@@ -11,7 +11,7 @@ import {getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHan
 import styles from "./BookingDataDisplay.module.css"
 import ParkingLotInfo from "@/pages/components/ParkingLotInfo/ParkingLotInfo";
 import {ERROR_NO_DATA_ALERT, ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
-import {getBookingRecommendations} from "@/utils/RequestHandler";
+import {getScheduleData} from "@/utils/RequestHandler";
 export type BookingDataDisplayData = {
     startDate: Date,
     duration: number,
@@ -94,7 +94,7 @@ export default function ({data,tableWidth, snackbar, userData} : BookingDataDisp
         return blockers;
     }
     useEffect(() => {
-        getBookingRecommendations(data.startDate, data.duration).then(result => {
+        getScheduleData(data.startDate, data.duration).then(result => {
             console.log(result)
             if (!result) {
                 snackbar.displaySnackbar(NO_SERVER_FOUND_ALERT)

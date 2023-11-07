@@ -74,7 +74,7 @@ type ResponseObject = {
     message: string,
     worked: boolean
 }
-export type FullParkingRecommendationResponse = ResponseObject & {
+export type FullScheduleDataResponse = ResponseObject & {
     tickets:Record<number, Array<RecommendationTicket>>
 }
 export type FullBookingResponse = ResponseObject & {
@@ -89,6 +89,9 @@ export type FullSensorDataResponse = ResponseObject & {
 }
 export type FullUserResponse = ResponseObject & {
     user: User
+}
+export type FullRecommendationResponse = ResponseObject & {
+    tickets: Array<RecommendationTicket>
 }
 
 

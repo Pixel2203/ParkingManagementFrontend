@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Cinzel&family=Maven+Pro:wght@900&display=swap');
+
+.wrapper {
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color:rgba(0,0,0,0);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    animation-iteration-count: 1;
+    animation: animate-bw forwards .5s;
+}
+@keyframes animate-bw {
+    0% {
+        background-color:rgba(0,0,0,0);
+    }
+    100% {
+        background-color:rgba(0,0,0,.7);
+    }
+}
+@keyframes animate-bwf {
+    0% {
+        transform:scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.innerWrapper {
+    background-color: white;
+    width: 500px;
+    height: fit-content;
+    animation-iteration-count: 1;
+    animation: animate-bwf forwards 1s;
+    border-bottom-left-radius: 25px;
+
+
+}
+.contentWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    border-left-color: #FF007F;
+    font-family: Verdana;
+}
+.contentWrapper h3{
+    font-size: 14pt;
+}
+.contentWrapper h4 {
+    font-size: 12pt;
+    margin: 5px 0;
+}
+.footer {
+    display:flex;
+    justify-content: space-evenly;
+    padding: 20px 0;
+}
+.infoButton{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 120px;
+}
+.header {
+    background-color: #72A1E5;
+    color:white;
+    height: 65px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Maven Pro";
+    font-size: 15pt;
+    letter-spacing: 5px;
+}
+.bookingContent {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+}
+
+.accordion {
+    margin-top: 15px;
+    height: fit-content;
+}
+.details p{
+    display: flex;
+    justify-content: space-between;
+}
+.details p span {
+    margin: 2px 100px 2px 0px;
+}
+.details p b {
+    font-weight: normal;
+}
+.statusDisplay {
+    color:white;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    width:120px;
+    text-align: center;
+    border-radius: 8px;
+}
+.headerAvatar{
+    background-color: white;
+    color: #72A1E5;
+    font-size: 20pt;
+}
+.alertBox div {
+    align-items: center;
+}
+.alertBox {
+
+}
+.cancelButton{
+    margin: 15px 0;
+
+}
+.bookSelector {
+    margin-right: 15px;
+}

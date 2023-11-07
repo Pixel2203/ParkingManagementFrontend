@@ -5,9 +5,11 @@ import BookingForm from "@/pages/components/ParkingLotInfo/ParkingLotInfo";
 import {getAllSensorData} from "@/utils/RequestHandler";
 import {Alert, Avatar, Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
 import {NO_SERVER_FOUND_ALERT} from "@/utils/fields";
+import Recommendation from "@/pages/components/ParkingLotInfo/RecommendationDisplay/Recommendation";
 export default function ({uData,snackbar}: {uData:User,snackbar:SnackbarComponent}):ReactElement {
     const [parkingData, setParkingData] = useState<ParkingOverview>();
     const [showBookingWindow, setShowBookingWindow] = useState(false);
+    const [showRecommendations , setShowRecommendations] = useState<boolean>(false);
     useEffect(() => {
         requestAndProcessSensorData()
     }, [showBookingWindow])
@@ -91,9 +93,14 @@ export default function ({uData,snackbar}: {uData:User,snackbar:SnackbarComponen
                             snackbar={snackbar}
                             parkingLotData={selectedParkingLot.current}
                             setShowBookingWindow={setShowBookingWindow}
+                            setShowRecommendations={setShowRecommendations}
                             userData={uData}
                         />
                     )}
+                    {
+                        showRecommendations && !showBookingWindow &&
+                        <Recommendation snackbar={snackbar} setShowRecommendations={setShowRecommendations}/>
+                    }
                 </>
             )}
         </>

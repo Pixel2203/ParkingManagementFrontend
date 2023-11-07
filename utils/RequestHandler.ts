@@ -4,7 +4,7 @@ import {
     User,
     FullBookingResponse,
     FullBookingListResponse,
-    FullParkingRecommendationResponse, FullUserResponse, UserRequest
+    FullScheduleDataResponse, FullUserResponse, UserRequest, FullRecommendationResponse
 } from "./types";
 
 
@@ -47,7 +47,7 @@ export function getBookingHistoryByPlate(plate:string):Promise<FullBookingListRe
         return undefined;
     });
 }
-export function getBookingRecommendations(startDate: Date, duration:number):Promise<FullParkingRecommendationResponse | undefined> {
+export function getScheduleData(startDate: Date, duration:number):Promise<FullScheduleDataResponse | undefined> {
     return fetch("http://localhost:8080/datadisplay?startDate=" + startDate.getTime() + "&duration=" + duration).then(res => res.json()).catch(reason => {
         return undefined;
     });
@@ -63,6 +63,11 @@ export function checkUserService(user:User):Promise<FullUserResponse | undefined
         },
         body: JSON.stringify(request)
     }).then(res => res.json()).catch(reason => {
+        return undefined;
+    });
+}
+export function getRecommendations(startDate:Date, duration:number):Promise<FullRecommendationResponse | undefined> {
+    return fetch("http://localhost:8080/recommend?startDate=" + startDate.getTime() + "&duration=" + duration).then(res => res.json()).catch(reason => {
         return undefined;
     });
 }

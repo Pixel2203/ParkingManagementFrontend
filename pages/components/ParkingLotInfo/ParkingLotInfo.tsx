@@ -18,7 +18,8 @@ import BookingHandler from "@/pages/components/ParkingLotInfo/BookingHandler/Boo
 import {Clear, PlaylistAdd} from "@mui/icons-material";
 import {ERROR_FUTURE_TOO_FAR_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
 import Configuration from "@/config/config.json"
-export default function ({parkingLotData,setShowBookingWindow,userData,snackbar, config} : {parkingLotData: Sensordata,setShowBookingWindow: (show: boolean) => void , userData:User,snackbar:SnackbarComponent, config?:BookingHandlerConfig }):ReactElement {
+import Recommendation from "@/pages/components/ParkingLotInfo/RecommendationDisplay/Recommendation";
+export default function ({parkingLotData,setShowBookingWindow,userData,snackbar, config, setShowRecommendations} : {parkingLotData: Sensordata,setShowBookingWindow: (show: boolean) => void , userData:User,snackbar:SnackbarComponent, config?:BookingHandlerConfig, setShowRecommendations: (show:boolean) => void }):ReactElement {
     const [bookingList, setBookingList] = useState<Array<Booking>>();
     const [currentDateObject,setCurrentDateObject] = useState<Date>();
     const [futureDateObject,setFutureDateObject] = useState<Date>();
@@ -30,6 +31,7 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
         currentDateObject: currentDateObject,
         setShowUnallowed: setShowUnallowed
     }
+
 
     useEffect(() => {
         /*
@@ -142,7 +144,10 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
                         <section>
                             <Alert severity={"error"} className={styles.alertBox}>
                                     <span>Buchung zu diesem Zeitpunkt nicht erlaubt!</span>
-                                    <Button>Empfehlung</Button>
+                                    <Button onClick={() => {
+                                        setShowRecommendations(true);
+                                        setShowBookingWindow(false);
+                                    }}>Empfehlung</Button>
                             </Alert>
                         </section>
                     }
