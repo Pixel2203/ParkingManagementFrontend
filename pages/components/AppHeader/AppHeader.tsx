@@ -39,7 +39,7 @@ export default function ({userData, setUserData,setContentSite} : {userData:User
             <nav>
                 <ul>
                     <li onClick={() => setContentSite("ppl")}><span>Parkplatzübersicht</span></li>
-                    <li onClick={() => setContentSite("br")}><span>Empfehlung</span></li>
+                    <li onClick={() => setContentSite("br")}><span>Parkplan</span></li>
                     <li>Hilfe</li>
                 </ul>
             </nav>

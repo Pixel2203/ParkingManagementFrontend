@@ -67,6 +67,7 @@ export default function ({parkingLotData,setShowBookingWindow,userData,snackbar,
             }
             if(!result.worked){
                 snackbar.displaySnackbar(<Alert severity={"error"}>{result.message}</Alert>)
+                setShowUnallowed(true);
                 return;
             }
             snackbar.displaySnackbar(<Alert severity={result.worked ? "success" : "error"}>{result.message}</Alert>)

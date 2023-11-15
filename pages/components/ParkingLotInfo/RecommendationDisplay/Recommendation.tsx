@@ -6,6 +6,7 @@ import {ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/u
 import {Accordion, AccordionDetails, AccordionSummary, Button} from "@mui/material";
 import {ArrowDownward, Clear, PlaylistAdd} from "@mui/icons-material";
 import styles from "./Recommendation.module.css"
+import {min} from "@popperjs/core/lib/utils/math";
 export default function ({snackbar, setShowRecommendations}:{snackbar:SnackbarComponent, setShowRecommendations: (show:boolean) => void}) :ReactElement {
     const timeSelectorRef = useRef<HTMLInputElement>(null);
     const dateSelectorRef = useRef<HTMLInputElement>(null);
@@ -37,6 +38,13 @@ export default function ({snackbar, setShowRecommendations}:{snackbar:SnackbarCo
         setShowRecommendations(false);
     }
     const clickBook = () => {
+
+    }
+    const calculateNextTime = (start:number):Date => {
+        if(!durationSelectorRef.current){
+            return new Date();
+        }
+        return new Date(start + (Number(durationSelectorRef.current.value) * 60*1000));
 
     }
     return (
@@ -85,7 +93,7 @@ export default function ({snackbar, setShowRecommendations}:{snackbar:SnackbarCo
 
                                                         {getDateAsString(new Date(item.startDate))}
                                                         <br/>
-                                                        <b>{`${getTimeAsString(new Date(item.startDate))} - ${getTimeAsString(new Date(item.endDate))}`}</b>
+                                                        <b>{`${getTimeAsString(new Date(item.startDate))} - ${getTimeAsString(calculateNextTime(item.startDate))}`}</b>
 
                                                     </AccordionDetails>
                                                 </Accordion>

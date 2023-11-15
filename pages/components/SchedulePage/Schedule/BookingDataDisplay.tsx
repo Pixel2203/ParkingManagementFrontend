@@ -12,6 +12,7 @@ import styles from "./BookingDataDisplay.module.css"
 import ParkingLotInfo from "@/pages/components/ParkingLotInfo/ParkingLotInfo";
 import {ERROR_NO_DATA_ALERT, ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
 import {getScheduleData} from "@/utils/RequestHandler";
+import Recommendation from "@/pages/components/ParkingLotInfo/RecommendationDisplay/Recommendation";
 export type BookingDataDisplayData = {
     startDate: Date,
     duration: number,
@@ -30,6 +31,7 @@ export default function ({data,tableWidth, snackbar, userData} : BookingDataDisp
     const [showBookingWindow,setShowBookingWindow] = useState<boolean>(false);
     const [parkingLotData,setParkingLotData] = useState<Sensordata>()
     const [config,setConfig] = useState<BookingHandlerConfig>();
+    const [showRecommendations,setShowRecommendation] = useState<boolean>(false);
     const {filterData} = data;
     const hours = Array.from(Array(24).keys())
     tableWidth = tableWidth ? tableWidth : 1200
@@ -199,7 +201,11 @@ export default function ({data,tableWidth, snackbar, userData} : BookingDataDisp
                 </table>
                 {
                     showBookingWindow && parkingLotData && userData &&
-                    <ParkingLotInfo config={config} snackbar={snackbar} parkingLotData={parkingLotData} setShowBookingWindow={setShowBookingWindow} userData={userData}/>
+                    <ParkingLotInfo setShowRecommendations={setShowRecommendation} config={config} snackbar={snackbar} parkingLotData={parkingLotData} setShowBookingWindow={setShowBookingWindow} userData={userData}/>
+                }
+                {
+                    showRecommendations && !showBookingWindow &&
+                    <Recommendation snackbar={snackbar} setShowRecommendations={setShowRecommendation}/>
                 }
             </div>
         </>
