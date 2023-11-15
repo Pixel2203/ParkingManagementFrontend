@@ -75,7 +75,8 @@ export default function ({data,tableWidth, snackbar, userData} : BookingDataDisp
                         name: availableTimes[i].name,
                         plate: null,
                         endDate: availableTimes[i].startDate,
-                        bookingId: 9999
+                        bookingId: 9999,
+                        sensorId: 0
                     })
                 }
             }
@@ -87,7 +88,8 @@ export default function ({data,tableWidth, snackbar, userData} : BookingDataDisp
                     endDate: availableTimes[i+1].startDate,
                     bookingId: 9999,
                     plate: null,
-                    name: availableTimes[i].name
+                    name: availableTimes[i].name,
+                    sensorId: 0
                 })
                 continue;
             }
@@ -205,7 +207,7 @@ export default function ({data,tableWidth, snackbar, userData} : BookingDataDisp
                 }
                 {
                     showRecommendations && !showBookingWindow &&
-                    <Recommendation snackbar={snackbar} setShowRecommendations={setShowRecommendation}/>
+                    <Recommendation userData={userData} snackbar={snackbar} setShowRecommendations={setShowRecommendation}/>
                 }
             </div>
         </>

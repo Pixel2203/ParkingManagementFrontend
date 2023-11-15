@@ -1,13 +1,18 @@
 import {ReactElement, useRef, useState} from "react";
-import {RecommendationTicket, SnackbarComponent} from "@/utils/types";
+import {FullBookingResponse, RecommendationTicket, SnackbarComponent, User} from "@/utils/types";
 import * as RequestHandler from "@/utils/RequestHandler";
-import {getDateAsString, getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
-import {ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT, NO_SERVER_FOUND_ALERT} from "@/utils/fields";
-import {Accordion, AccordionDetails, AccordionSummary, Button} from "@mui/material";
+import {getDateAsString, getFutureDate, getTimeAsString, putIntoDateCorrectDateFormat} from "@/utils/TimeDateHandler";
+import {
+    ERROR_FUTURE_TOO_FAR_ALERT,
+    ERROR_NOT_WORKED_RECOMMENDATIONS_ALERT,
+    NO_SERVER_FOUND_ALERT
+} from "@/utils/fields";
+import {Accordion, AccordionDetails, AccordionSummary, Alert, Button} from "@mui/material";
 import {ArrowDownward, Clear, PlaylistAdd} from "@mui/icons-material";
 import styles from "./Recommendation.module.css"
-import {min} from "@popperjs/core/lib/utils/math";
-export default function ({snackbar, setShowRecommendations}:{snackbar:SnackbarComponent, setShowRecommendations: (show:boolean) => void}) :ReactElement {
+import Configuration from "@/config/config.json";
+import {sendBookingRequest} from "@/utils/RequestHandler";
+export default function ({snackbar, userData,setShowRecommendations}:{snackbar:SnackbarComponent, userData:User,setShowRecommendations: (show:boolean) => void}) :ReactElement {
     const timeSelectorRef = useRef<HTMLInputElement>(null);
     const dateSelectorRef = useRef<HTMLInputElement>(null);
     const durationSelectorRef = useRef<HTMLSelectElement>(null)
@@ -38,8 +43,41 @@ export default function ({snackbar, setShowRecommendations}:{snackbar:SnackbarCo
         setShowRecommendations(false);
     }
     const clickBook = () => {
-
+        const radioElement:HTMLInputElement = document.querySelector('input[name="bookSelector"]:checked') as HTMLInputElement;
+        if(radioElement == null){
+            return;
+        }
+        if(!timeSelectorRef.current || !dateSelectorRef.current) {
+            return;
+        }
+        if(!recommendationData || recommendationData.length == 0){
+            return;
+        }
+        const startDate = recommendationData[0].startDate;
+        console.log("VALUE: " + radioElement.value);
+        const currentDateObject = new Date(startDate);
+        const futureDateObject = calculateNextTime(startDate);
+        // Calculate Difference so you cant book 10 years in the future
+        let differenceInHours = futureDateObject.getTime() - new Date().getTime()
+        differenceInHours = differenceInHours / 1000/60/60;
+        if(differenceInHours > Configuration.maxTimeAheadInHours ){
+            snackbar.displaySnackbar(ERROR_FUTURE_TOO_FAR_ALERT);
+            return;
+        }
+        sendBookingRequest(currentDateObject,futureDateObject,userData,radioElement.valueAsNumber).then((result: FullBookingResponse | undefined) => {
+            if(!result){
+                snackbar.displaySnackbar(NO_SERVER_FOUND_ALERT);
+                return;
+            }
+            if(!result.worked){
+                snackbar.displaySnackbar(<Alert severity={"error"}>{result.message}</Alert>)
+                return;
+            }
+            snackbar.displaySnackbar(<Alert severity={result.worked ? "success" : "error"}>{result.message}</Alert>)
+            setShowRecommendations(false);
+        })
     }
+
     const calculateNextTime = (start:number):Date => {
         if(!durationSelectorRef.current){
             return new Date();
@@ -86,7 +124,7 @@ export default function ({snackbar, setShowRecommendations}:{snackbar:SnackbarCo
                                                         aria-controls="panel1bh-content"
                                                         id="panel1bh-header"
                                                     >
-                                                        <input type={"radio"} name={"bookSelector"} className={styles.bookSelector}/>
+                                                        <input type={"radio"} name={"bookSelector"} value={item.sensorId} className={styles.bookSelector}/>
                                                         <p>{item.name}</p>
                                                     </AccordionSummary>
                                                     <AccordionDetails>

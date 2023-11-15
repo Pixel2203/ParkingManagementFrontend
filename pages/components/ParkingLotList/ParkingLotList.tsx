@@ -99,7 +99,7 @@ export default function ({uData,snackbar}: {uData:User,snackbar:SnackbarComponen
                     )}
                     {
                         showRecommendations && !showBookingWindow &&
-                        <Recommendation snackbar={snackbar} setShowRecommendations={setShowRecommendations}/>
+                        <Recommendation userData={uData} snackbar={snackbar} setShowRecommendations={setShowRecommendations}/>
                     }
                 </>
             )}

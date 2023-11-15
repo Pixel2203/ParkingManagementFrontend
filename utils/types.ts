@@ -51,6 +51,7 @@ export type RecommendationTicket = Timestamp & {
     bookingId: 0 | 9999,
     plate: null,
     name: string,
+    sensorId:number
 }
 export type Booking = Timestamp & Schedule & {
     name: string
